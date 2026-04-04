@@ -666,6 +666,141 @@ Weryfikacja: wejdź na `https://twoja-domena.vercel.app/admin` — powinien poja
 
 ---
 
+## Task 10: Skonfiguruj ESLint + Prettier
+
+**Files:**
+- Modify: `eslint.config.mjs` (lub `.eslintrc.json` — zależnie co wygenerował Payload CLI)
+- Create: `.prettierrc`
+- Create: `.prettierignore`
+- Modify: `package.json` (dodanie skryptów `lint` i `format`)
+
+- [ ] **Step 1: Zainstaluj Prettier i integrację z ESLint**
+
+```bash
+pnpm add -D prettier eslint-config-prettier
+```
+
+`eslint-config-prettier` wyłącza reguły ESLint które kolidują z Prettierem.
+
+- [ ] **Step 2: Stwórz `.prettierrc`**
+
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "plugins": []
+}
+```
+
+Plik: `.prettierrc`
+
+- [ ] **Step 3: Stwórz `.prettierignore`**
+
+```
+.next/
+node_modules/
+public/
+pnpm-lock.yaml
+src/payload-types.ts
+```
+
+Plik: `.prettierignore` — wyklucza auto-generowane pliki i build output.
+
+- [ ] **Step 4: Zaktualizuj konfigurację ESLint**
+
+Sprawdź jak Payload CLI nazwał plik konfiguracyjny ESLint:
+
+```bash
+ls eslint.config* .eslintrc* 2>/dev/null
+```
+
+**Jeśli jest `eslint.config.mjs` (flat config — Next.js 15+):**
+
+```js
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { FlatCompat } from '@eslint/eslintrc'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
+
+const eslintConfig = [
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+]
+
+export default eslintConfig
+```
+
+**Jeśli jest `.eslintrc.json`:**
+
+```json
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"]
+}
+```
+
+Dodanie `"prettier"` na końcu tablicy `extends` wyłącza kolidujące reguły.
+
+- [ ] **Step 5: Dodaj skrypty do `package.json`**
+
+W sekcji `"scripts"` dodaj:
+
+```json
+{
+  "scripts": {
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
+}
+```
+
+Uwaga: `next lint` i `next build` mogą już istnieć — nie duplikuj, tylko dodaj brakujące.
+
+- [ ] **Step 6: Weryfikacja ESLint**
+
+```bash
+pnpm lint
+```
+
+Oczekiwane: brak błędów (lub tylko ostrzeżenia, nie errors).
+
+- [ ] **Step 7: Weryfikacja Prettier**
+
+```bash
+pnpm format:check
+```
+
+Jeśli są pliki do sformatowania, uruchom:
+
+```bash
+pnpm format
+```
+
+Następnie ponownie:
+
+```bash
+pnpm format:check
+# oczekiwane: All matched files use Prettier code style!
+```
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add .prettierrc .prettierignore eslint.config.mjs package.json pnpm-lock.yaml
+git commit -m "chore: add ESLint + Prettier configuration"
+```
+
+---
+
 ## Weryfikacja końcowa
 
 Po wykonaniu wszystkich tasków sprawdź:
@@ -675,6 +810,8 @@ Po wykonaniu wszystkich tasków sprawdź:
 nvm use && node --version          # v22.x.x
 pnpm --version                     # 9.x.x
 docker compose ps                  # postgres running
+pnpm lint                          # brak ESLint errors
+pnpm format:check                  # wszystkie pliki sformatowane
 pnpm dev                           # localhost:3000 działa
 # http://localhost:3000/admin      # panel Payload dostępny
 ```
