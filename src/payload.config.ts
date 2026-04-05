@@ -19,6 +19,19 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: '— Booster AI',
+      icons: [{ rel: 'icon', url: '/Blue-sygnet-with-background-1x1-1.png' }],
+      openGraph: {
+        images: [{ url: '/Booster-logo.png' }],
+      },
+    },
+    components: {
+      graphics: {
+        Logo: '/src/components/admin/AdminLogo#default',
+        Icon: '/src/components/admin/AdminIcon#default',
+      },
+    },
   },
   collections: [Pages, Media, Users, BlogPosts, UseCases, Categories],
   globals: [Homepage],
