@@ -133,11 +133,11 @@ export const Homepage: GlobalConfig = {
           type: 'text',
         },
         {
-          name: 'buttonLabel',
+          name: 'ctaLabel',
           type: 'text',
         },
         {
-          name: 'buttonUrl',
+          name: 'ctaUrl',
           type: 'text',
         },
       ],
