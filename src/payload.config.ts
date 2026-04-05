@@ -20,7 +20,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     meta: {
-      titleSuffix: '— Booster AI',
+      titleSuffix: ' — Booster AI',
       icons: [{ rel: 'icon', url: '/Blue-sygnet-with-background-1x1-1.png' }],
       openGraph: {
         images: [{ url: '/Booster-logo.png' }],
