@@ -1,0 +1,31 @@
+// Booster AI — dark navy/blue admin theme
+:root,
+[data-theme='light'],
+[data-theme='dark'] {
+  // Sidebar / nav background
+  --theme-bg: #0f172a;
+  --theme-elevation-0: #0f172a;
+  --theme-elevation-50: #1e293b;
+  --theme-elevation-100: #1e293b;
+  --theme-elevation-150: #243247;
+  --theme-elevation-200: #2d3e57;
+  --theme-elevation-500: #334d6e;
+  --theme-elevation-800: #3b82f6;
+  --theme-elevation-900: #60a5fa;
+  --theme-elevation-1000: #93c5fd;
+
+  // Primary brand color (electric blue)
+  --theme-success-50: #eff6ff;
+  --theme-success-500: #3b82f6;
+  --theme-success-600: #2563eb;
+
+  // Text
+  --theme-text: #f1f5f9;
+  --theme-text-secondary: #94a3b8;
+
+  // Accent / interactive
+  --color-base-blue-medium: #3b82f6;
+
+  // Input / form backgrounds
+  --theme-input-bg: #1e293b;
+}
