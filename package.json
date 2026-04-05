@@ -11,6 +11,9 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
@@ -34,11 +37,13 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.16.0",
     "eslint-config-next": "^16.2.0",
+    "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.4.2",
     "typescript": "5.7.3"
   },

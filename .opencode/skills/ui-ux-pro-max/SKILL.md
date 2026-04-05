@@ -18,16 +18,19 @@ python3 --version || python --version
 If Python is not installed, install it based on user's OS:
 
 **macOS:**
+
 ```bash
 brew install python3
 ```
 
 **Ubuntu/Debian:**
+
 ```bash
 sudo apt update && sudo apt install python3
 ```
 
 **Windows:**
+
 ```powershell
 winget install Python.Python.3.12
 ```
@@ -38,23 +41,24 @@ winget install Python.Python.3.12
 
 Use this skill when the user requests any of the following:
 
-| Scenario | Trigger Examples | Start From |
-|----------|-----------------|------------|
-| **New project / page** | "Build a landing page", "Build a dashboard" | Step 1 → Step 2 (design system) |
-| **New component** | "Create a pricing card", "Add a modal" | Step 3 (domain search: style, ux) |
-| **Choose style / color / font** | "What style fits a fintech app?", "Recommend colors" | Step 2 (design system) |
-| **Review existing UI** | "Review this page for UX issues", "Check accessibility" | Quick Reference checklist above |
-| **Fix a UI bug** | "Button hover is broken", "Layout shifts on load" | Quick Reference → relevant section |
-| **Improve / optimize** | "Make this faster", "Improve mobile experience" | Step 3 (domain search: ux, react) |
-| **Implement dark mode** | "Add dark mode support" | Step 3 (domain: style "dark mode") |
-| **Add charts / data viz** | "Add an analytics dashboard chart" | Step 3 (domain: chart) |
-| **Stack best practices** | "React performance tips", "SwiftUI navigation" | Step 4 (stack search) |
+| Scenario                        | Trigger Examples                                        | Start From                         |
+| ------------------------------- | ------------------------------------------------------- | ---------------------------------- |
+| **New project / page**          | "Build a landing page", "Build a dashboard"             | Step 1 → Step 2 (design system)    |
+| **New component**               | "Create a pricing card", "Add a modal"                  | Step 3 (domain search: style, ux)  |
+| **Choose style / color / font** | "What style fits a fintech app?", "Recommend colors"    | Step 2 (design system)             |
+| **Review existing UI**          | "Review this page for UX issues", "Check accessibility" | Quick Reference checklist above    |
+| **Fix a UI bug**                | "Button hover is broken", "Layout shifts on load"       | Quick Reference → relevant section |
+| **Improve / optimize**          | "Make this faster", "Improve mobile experience"         | Step 3 (domain search: ux, react)  |
+| **Implement dark mode**         | "Add dark mode support"                                 | Step 3 (domain: style "dark mode") |
+| **Add charts / data viz**       | "Add an analytics dashboard chart"                      | Step 3 (domain: chart)             |
+| **Stack best practices**        | "React performance tips", "SwiftUI navigation"          | Step 4 (stack search)              |
 
 Follow this workflow:
 
 ### Step 1: Analyze User Requirements
 
 Extract key information from user request:
+
 - **Product type**: Entertainment (social, video, music, gaming), Tool (scanner, editor, converter), Productivity (task manager, notes, calendar), or hybrid
 - **Target audience**: C-end consumer users; consider age group, usage context (commute, leisure, work)
 - **Style keywords**: playful, vibrant, minimal, dark mode, content-first, immersive, etc.
@@ -71,12 +75,14 @@ python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "<product_type> <indust
 > Note: Script is located at `.opencode/skills/ui-ux-pro-max/scripts/search.py` relative to project root. Data files are in `.opencode/skills/ui-ux-pro-max/data/`.
 
 This command:
+
 1. Searches domains in parallel (product, style, color, landing, typography)
 2. Applies reasoning rules from `ui-reasoning.csv` to select best matches
 3. Returns complete design system: pattern, style, colors, typography, effects
 4. Includes anti-patterns to avoid
 
 **Example:**
+
 ```bash
 python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
 ```
@@ -90,6 +96,7 @@ python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "<query>" --design-syst
 ```
 
 This creates:
+
 - `design-system/MASTER.md` — Global Source of Truth with all design rules
 - `design-system/pages/` — Folder for page-specific overrides
 
@@ -103,15 +110,15 @@ python3 .opencode/skills/ui-ux-pro-max/scripts/search.py "<keyword>" --domain <d
 
 **When to use detailed searches:**
 
-| Need | Domain | Example |
-|------|--------|---------|
-| Product type patterns | `product` | `--domain product "entertainment social"` |
-| More style options | `style` | `--domain style "glassmorphism dark"` |
-| Color palettes | `color` | `--domain color "entertainment vibrant"` |
-| Font pairings | `typography` | `--domain typography "playful modern"` |
-| Chart recommendations | `chart` | `--domain chart "real-time dashboard"` |
-| UX best practices | `ux` | `--domain ux "animation accessibility"` |
-| Landing structure | `landing` | `--domain landing "hero social-proof"` |
+| Need                  | Domain       | Example                                   |
+| --------------------- | ------------ | ----------------------------------------- |
+| Product type patterns | `product`    | `--domain product "entertainment social"` |
+| More style options    | `style`      | `--domain style "glassmorphism dark"`     |
+| Color palettes        | `color`      | `--domain color "entertainment vibrant"`  |
+| Font pairings         | `typography` | `--domain typography "playful modern"`    |
+| Chart recommendations | `chart`      | `--domain chart "real-time dashboard"`    |
+| UX best practices     | `ux`         | `--domain ux "animation accessibility"`   |
+| Landing structure     | `landing`    | `--domain landing "hero social-proof"`    |
 
 ### Step 4: Stack Guidelines
 
@@ -147,29 +154,29 @@ Best practices, anti-patterns, and accessibility rules covering animations, touc
 
 ### Icons & Visual Elements
 
-| Rule | Standard | Avoid |
-|------|----------|--------|
-| **No Emoji as Icons** | Use vector icons (Phosphor, Heroicons, Lucide) | Using emojis (🎨 🚀 ⚙️) for UI controls |
-| **Vector-Only Assets** | SVG or platform vector icons | Raster PNG icons |
-| **Consistent Icon Sizing** | Design tokens (icon-sm, icon-md=24pt, icon-lg) | Mixing arbitrary values |
-| **Touch Target Minimum** | ≥44×44pt (iOS) / ≥48×48dp (Android) | Small icons without expanded tap area |
-| **Icon Contrast** | WCAG 4.5:1 for small, 3:1 minimum for larger | Low-contrast icons |
+| Rule                       | Standard                                       | Avoid                                   |
+| -------------------------- | ---------------------------------------------- | --------------------------------------- |
+| **No Emoji as Icons**      | Use vector icons (Phosphor, Heroicons, Lucide) | Using emojis (🎨 🚀 ⚙️) for UI controls |
+| **Vector-Only Assets**     | SVG or platform vector icons                   | Raster PNG icons                        |
+| **Consistent Icon Sizing** | Design tokens (icon-sm, icon-md=24pt, icon-lg) | Mixing arbitrary values                 |
+| **Touch Target Minimum**   | ≥44×44pt (iOS) / ≥48×48dp (Android)            | Small icons without expanded tap area   |
+| **Icon Contrast**          | WCAG 4.5:1 for small, 3:1 minimum for larger   | Low-contrast icons                      |
 
 ### Layout & Spacing
 
-| Rule | Do | Don't |
-|------|----|----|
-| **8dp spacing rhythm** | Consistent 4/8dp system for padding/gaps | Random spacing increments |
-| **Safe-area compliance** | Respect top/bottom safe areas | UI under notch or gesture area |
-| **Readable text measure** | Limit line length on large devices | Edge-to-edge paragraphs on tablets |
+| Rule                      | Do                                       | Don't                              |
+| ------------------------- | ---------------------------------------- | ---------------------------------- |
+| **8dp spacing rhythm**    | Consistent 4/8dp system for padding/gaps | Random spacing increments          |
+| **Safe-area compliance**  | Respect top/bottom safe areas            | UI under notch or gesture area     |
+| **Readable text measure** | Limit line length on large devices       | Edge-to-edge paragraphs on tablets |
 
 ### Light/Dark Mode
 
-| Rule | Do | Don't |
-|------|----|----|
-| **Text contrast (light)** | Body text ≥4.5:1 against light surfaces | Low-contrast gray body text |
-| **Text contrast (dark)** | Primary ≥4.5:1, secondary ≥3:1 on dark | Text blending into background |
-| **Token-driven theming** | Semantic color tokens per theme | Hardcoded hex values per screen |
+| Rule                      | Do                                      | Don't                           |
+| ------------------------- | --------------------------------------- | ------------------------------- |
+| **Text contrast (light)** | Body text ≥4.5:1 against light surfaces | Low-contrast gray body text     |
+| **Text contrast (dark)**  | Primary ≥4.5:1, secondary ≥3:1 on dark  | Text blending into background   |
+| **Token-driven theming**  | Semantic color tokens per theme         | Hardcoded hex values per screen |
 
 ---
 

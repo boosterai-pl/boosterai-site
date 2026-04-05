@@ -12,29 +12,30 @@
 
 ## File Map
 
-| Plik | Odpowiedzialność |
-|------|-----------------|
-| `.nvmrc` | Pinuje wersję Node.js |
-| `docker-compose.yml` | Lokalny serwis Postgres |
-| `.env.example` | Template zmiennych środowiskowych (w repo) |
-| `.env.local` | Lokalne wartości env (gitignored) |
-| `.gitignore` | Wyklucza `.env.local`, `public/media/`, `.next/` itp. |
-| `package.json` | Zależności projektu, skrypty |
-| `next.config.ts` | Konfiguracja Next.js (withPayload wrapper) |
-| `tailwind.config.ts` | Konfiguracja Tailwind CSS |
-| `src/payload.config.ts` | Główna konfiguracja Payload CMS |
-| `src/collections/Pages.ts` | Kolekcja Pages (title, slug, content, seo) |
-| `src/collections/Media.ts` | Kolekcja Media |
-| `src/app/(frontend)/page.tsx` | Publiczna strona główna |
-| `src/app/(payload)/admin/[[...segments]]/page.tsx` | Payload admin panel route |
-| `src/app/(payload)/admin/[[...segments]]/not-found.tsx` | Payload admin 404 |
-| `src/app/(payload)/api/[...slug]/route.ts` | Payload REST API route |
+| Plik                                                    | Odpowiedzialność                                      |
+| ------------------------------------------------------- | ----------------------------------------------------- |
+| `.nvmrc`                                                | Pinuje wersję Node.js                                 |
+| `docker-compose.yml`                                    | Lokalny serwis Postgres                               |
+| `.env.example`                                          | Template zmiennych środowiskowych (w repo)            |
+| `.env.local`                                            | Lokalne wartości env (gitignored)                     |
+| `.gitignore`                                            | Wyklucza `.env.local`, `public/media/`, `.next/` itp. |
+| `package.json`                                          | Zależności projektu, skrypty                          |
+| `next.config.ts`                                        | Konfiguracja Next.js (withPayload wrapper)            |
+| `tailwind.config.ts`                                    | Konfiguracja Tailwind CSS                             |
+| `src/payload.config.ts`                                 | Główna konfiguracja Payload CMS                       |
+| `src/collections/Pages.ts`                              | Kolekcja Pages (title, slug, content, seo)            |
+| `src/collections/Media.ts`                              | Kolekcja Media                                        |
+| `src/app/(frontend)/page.tsx`                           | Publiczna strona główna                               |
+| `src/app/(payload)/admin/[[...segments]]/page.tsx`      | Payload admin panel route                             |
+| `src/app/(payload)/admin/[[...segments]]/not-found.tsx` | Payload admin 404                                     |
+| `src/app/(payload)/api/[...slug]/route.ts`              | Payload REST API route                                |
 
 ---
 
 ## Task 1: Zainstaluj nvm i Node.js
 
 **Files:**
+
 - Create: `.nvmrc`
 
 - [ ] **Step 1: Zainstaluj nvm**
@@ -46,6 +47,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 Następnie zamknij i otwórz terminal (lub wykonaj `source ~/.bashrc` / `source ~/.zshrc`).
 
 Weryfikacja:
+
 ```
 nvm --version
 # oczekiwane: 0.39.7
@@ -67,6 +69,7 @@ nvm use 22
 ```
 
 Weryfikacja:
+
 ```
 node --version
 # oczekiwane: v22.x.x
@@ -79,6 +82,7 @@ corepack enable
 ```
 
 Weryfikacja:
+
 ```
 pnpm --version
 # oczekiwane: 9.x.x lub wyżej
@@ -96,6 +100,7 @@ git commit -m "chore: add .nvmrc pinning Node.js 22"
 ## Task 2: Zainstaluj Docker Desktop i skonfiguruj lokalny Postgres
 
 **Files:**
+
 - Create: `docker-compose.yml`
 
 - [ ] **Step 1: Zainstaluj Docker Desktop**
@@ -105,6 +110,7 @@ Pobierz i zainstaluj Docker Desktop ze strony https://docs.docker.com/desktop/
 Po instalacji uruchom Docker Desktop i poczekaj aż ikona w systemowym trayu pokaże "Docker Desktop is running".
 
 Weryfikacja:
+
 ```bash
 docker --version
 # oczekiwane: Docker version 25.x.x lub wyżej
@@ -124,7 +130,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: boosterai
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -141,6 +147,7 @@ docker compose up -d
 ```
 
 Weryfikacja:
+
 ```bash
 docker compose ps
 # oczekiwane: postgres   running   0.0.0.0:5432->5432/tcp
@@ -158,6 +165,7 @@ git commit -m "chore: add docker-compose for local Postgres"
 ## Task 3: Stwórz projekt Next.js + Payload CMS
 
 **Files:**
+
 - Create: wszystkie pliki projektu przez CLI
 
 - [ ] **Step 1: Uruchom Payload CLI w katalogu repo**
@@ -167,6 +175,7 @@ pnpm create payload-app@latest .
 ```
 
 Gdy CLI zapyta o opcje, wybierz:
+
 - **Template**: `blank` (lub `website` — obydwa działają, `blank` daje czystszy start)
 - **Package manager**: `pnpm`
 - **Database**: `postgres`
@@ -184,6 +193,7 @@ ls src/
 - [ ] **Step 3: Sprawdź wygenerowany `package.json`**
 
 Upewnij się że zawiera:
+
 ```json
 {
   "dependencies": {
@@ -210,6 +220,7 @@ git commit -m "feat: scaffold Next.js + Payload CMS project"
 ## Task 4: Skonfiguruj zmienne środowiskowe
 
 **Files:**
+
 - Create: `.env.example`
 - Create: `.env.local` (lokalnie, nie commituj)
 - Modify: `.gitignore`
@@ -267,6 +278,7 @@ openssl rand -hex 32
 Skopiuj output i użyj jako `PAYLOAD_SECRET`.
 
 Stwórz `.env.local`:
+
 ```env
 DATABASE_URI=postgresql://postgres:postgres@localhost:5432/boosterai
 PAYLOAD_SECRET=<output z openssl rand -hex 32>
@@ -287,6 +299,7 @@ git commit -m "chore: add env template and gitignore rules"
 ## Task 5: Skonfiguruj Payload CMS — adapter Postgres i collections
 
 **Files:**
+
 - Modify: `src/payload.config.ts`
 - Modify: `src/collections/Pages.ts` (lub stwórz jeśli brak)
 - Modify: `src/collections/Media.ts` (lub stwórz jeśli brak)
@@ -406,6 +419,7 @@ git commit -m "feat: configure Payload CMS with Pages and Media collections"
 ## Task 6: Dodaj plugin Form Builder
 
 **Files:**
+
 - Modify: `src/payload.config.ts`
 - Run: `pnpm add @payloadcms/plugin-form-builder`
 
@@ -485,6 +499,7 @@ git commit -m "feat: add form-builder plugin to Payload CMS"
 ## Task 7: Skonfiguruj Vercel Blob storage dla mediów
 
 **Files:**
+
 - Modify: `src/payload.config.ts`
 - Run: `pnpm add @payloadcms/storage-vercel-blob`
 
@@ -568,6 +583,7 @@ git commit -m "feat: add Vercel Blob storage for media (prod only)"
 ## Task 8: Skonfiguruj Tailwind CSS
 
 **Files:**
+
 - Modify: `tailwind.config.ts`
 - Modify: `src/app/(frontend)/globals.css` (lub `src/app/globals.css`)
 
@@ -579,10 +595,7 @@ Upewnij się że content paths obejmują wszystkie pliki projektu (Payload CLI m
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {},
   },
@@ -622,6 +635,7 @@ git commit -m "chore: verify Tailwind CSS configuration"
 ## Task 9: Przygotowanie do deploymentu na Vercel
 
 **Files:**
+
 - Brak nowych plików — kroki manualne przez UI
 
 - [ ] **Step 1: Utwórz konto na Neon i bazę danych**
@@ -641,12 +655,12 @@ git commit -m "chore: verify Tailwind CSS configuration"
 
 W Project Settings → Environment Variables dodaj:
 
-| Klucz | Wartość | Środowisko |
-|-------|---------|-----------|
-| `DATABASE_URI` | Neon connection string | Production, Preview |
-| `PAYLOAD_SECRET` | ten sam co lokalnie (lub nowy `openssl rand -hex 32`) | Production, Preview |
-| `NEXT_PUBLIC_SERVER_URL` | `https://twoja-domena.vercel.app` | Production |
-| `BLOB_READ_WRITE_TOKEN` | wygenerowany z Vercel Blob (krok 4) | Production, Preview |
+| Klucz                    | Wartość                                               | Środowisko          |
+| ------------------------ | ----------------------------------------------------- | ------------------- |
+| `DATABASE_URI`           | Neon connection string                                | Production, Preview |
+| `PAYLOAD_SECRET`         | ten sam co lokalnie (lub nowy `openssl rand -hex 32`) | Production, Preview |
+| `NEXT_PUBLIC_SERVER_URL` | `https://twoja-domena.vercel.app`                     | Production          |
+| `BLOB_READ_WRITE_TOKEN`  | wygenerowany z Vercel Blob (krok 4)                   | Production, Preview |
 
 - [ ] **Step 4: Utwórz Vercel Blob store**
 
@@ -669,6 +683,7 @@ Weryfikacja: wejdź na `https://twoja-domena.vercel.app/admin` — powinien poja
 ## Task 10: Skonfiguruj ESLint + Prettier
 
 **Files:**
+
 - Modify: `eslint.config.mjs` (lub `.eslintrc.json` — zależnie co wygenerował Payload CLI)
 - Create: `.prettierrc`
 - Create: `.prettierignore`
@@ -731,9 +746,7 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
-]
+const eslintConfig = [...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier')]
 
 export default eslintConfig
 ```
@@ -817,6 +830,7 @@ pnpm dev                           # localhost:3000 działa
 ```
 
 Na produkcji:
+
 - `https://twoja-domena.vercel.app` — strona działa
 - `https://twoja-domena.vercel.app/admin` — panel działa
 - Upload pliku przez admin → plik ląduje w Vercel Blob
