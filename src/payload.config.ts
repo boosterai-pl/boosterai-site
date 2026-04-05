@@ -6,6 +6,10 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'
+import { BlogPosts } from './collections/BlogPosts'
+import { UseCases } from './collections/UseCases'
+import { Categories } from './collections/Categories'
+import { Homepage } from './globals/Homepage'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -16,7 +20,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Pages, Media, Users],
+  collections: [Pages, Media, Users, BlogPosts, UseCases, Categories],
+  globals: [Homepage],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
