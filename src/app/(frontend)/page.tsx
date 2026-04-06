@@ -1,59 +1,38 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
-import React from 'react'
-import { fileURLToPath } from 'url'
-
+import CollaborationBanner from '@/components/homepage/CollaborationBanner'
+import CTASection from '@/components/homepage/CTASection'
+import HeroSection from '@/components/homepage/HeroSection'
+import ProcessSection from '@/components/homepage/ProcessSection'
+import ServicesSection from '@/components/homepage/ServicesSection'
+import UseCasesPreview from '@/components/homepage/UseCasesPreview'
 import config from '@/payload.config'
-import './styles.css'
+import { getPayload } from 'payload'
+
+export const revalidate = 60
 
 export default async function HomePage() {
-  const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const homepage = await payload.findGlobal({
+    slug: 'homepage',
+    depth: 2,
+  })
 
   return (
-    <div className="home">
-      <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </div>
-      </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
-      </div>
-    </div>
+    <>
+      <HeroSection data={homepage.hero} />
+
+      <ServicesSection data={homepage.salesBooster} sectionId="sales-booster" />
+
+      <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
+
+      <CollaborationBanner data={homepage.collaborationBanner} />
+
+      <ProcessSection data={homepage.processSteps} />
+
+      <UseCasesPreview data={homepage.useCasesSection} />
+
+      <CTASection data={homepage.cta} />
+    </>
   )
 }
