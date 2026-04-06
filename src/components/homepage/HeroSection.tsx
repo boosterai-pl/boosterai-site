@@ -49,7 +49,14 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 {data.ctaLabel}
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -62,10 +69,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           {/* Illustration */}
-          {data?.illustration && typeof data.illustration === 'object' && (
+          {data?.illustration && typeof data.illustration === 'object' && data.illustration.url && (
             <div className="relative h-64 md:h-96 lg:h-[500px]">
               <Image
-                src={data.illustration.url || ''}
+                src={data.illustration.url}
                 alt={data.illustration.alt || 'Hero illustration'}
                 fill
                 priority
