@@ -923,6 +923,9 @@ export interface Homepage {
     ctaLabel?: string | null;
     ctaUrl?: string | null;
     backgroundImage?: (number | null) | Media;
+    badgeText?: string | null;
+    badgeSubtext?: string | null;
+    illustration?: (number | null) | Media;
   };
   salesBooster?: {
     sectionTitle?: string | null;
@@ -987,6 +990,15 @@ export interface Homepage {
         }[]
       | null;
   };
+  collaborationBanner: {
+    title: string;
+    ctaLabel?: string | null;
+    ctaUrl?: string | null;
+  };
+  useCasesSection: {
+    sectionTitle: string;
+    featuredCases?: (number | UseCase)[] | null;
+  };
   cta?: {
     headline?: string | null;
     ctaLabel?: string | null;
@@ -1008,6 +1020,9 @@ export interface HomepageSelect<T extends boolean = true> {
         ctaLabel?: T;
         ctaUrl?: T;
         backgroundImage?: T;
+        badgeText?: T;
+        badgeSubtext?: T;
+        illustration?: T;
       };
   salesBooster?:
     | T
@@ -1049,6 +1064,19 @@ export interface HomepageSelect<T extends boolean = true> {
               description?: T;
               id?: T;
             };
+      };
+  collaborationBanner?:
+    | T
+    | {
+        title?: T;
+        ctaLabel?: T;
+        ctaUrl?: T;
+      };
+  useCasesSection?:
+    | T
+    | {
+        sectionTitle?: T;
+        featuredCases?: T;
       };
   cta?:
     | T
