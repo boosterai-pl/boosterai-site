@@ -28,6 +28,22 @@ export const Homepage: GlobalConfig = {
           type: 'upload',
           relationTo: 'media',
         },
+        {
+          name: 'badgeText',
+          type: 'text',
+          label: 'Badge Text',
+        },
+        {
+          name: 'badgeSubtext',
+          type: 'text',
+          label: 'Badge Subtext',
+        },
+        {
+          name: 'illustration',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Hero Illustration',
+        },
       ],
     },
     {
@@ -121,6 +137,47 @@ export const Homepage: GlobalConfig = {
               type: 'textarea',
             },
           ],
+        },
+      ],
+    },
+    {
+      name: 'collaborationBanner',
+      type: 'group',
+      label: 'Collaboration Banner',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'ctaLabel',
+          type: 'text',
+        },
+        {
+          name: 'ctaUrl',
+          type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'useCasesSection',
+      type: 'group',
+      label: 'Use Cases Preview',
+      fields: [
+        {
+          name: 'sectionTitle',
+          type: 'text',
+          required: true,
+          defaultValue: 'Poznaj nasze wdrożenia',
+        },
+        {
+          name: 'featuredCases',
+          type: 'relationship',
+          relationTo: 'use-cases',
+          hasMany: true,
+          maxRows: 2,
+          label: 'Featured Use Cases',
         },
       ],
     },
