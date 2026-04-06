@@ -6,6 +6,13 @@ import { useState } from 'react'
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const navItems = [
+    { href: '/', label: 'Booster' },
+    { href: '/uslugi', label: 'Usługi' },
+    { href: '/use-cases', label: 'Use cases' },
+    { href: '/kontakt', label: 'Kontakt' },
+  ]
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
       {/* Skip to main content link */}
@@ -25,22 +32,15 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Primary navigation">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
-              aria-current="page"
-            >
-              Booster
-            </Link>
-            <Link href="/uslugi" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Usługi
-            </Link>
-            <Link href="/use-cases" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Use cases
-            </Link>
-            <Link href="/kontakt" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Kontakt
-            </Link>
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* CTA Button - Desktop */}
@@ -54,7 +54,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-blue-600"
+            className="md:hidden p-3 text-gray-700 hover:text-blue-600"
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -82,37 +82,19 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4" aria-label="Mobile navigation">
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Booster
-              </Link>
-              <Link
-                href="/uslugi"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Usługi
-              </Link>
-              <Link
-                href="/use-cases"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Use cases
-              </Link>
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
                 href="/kontakt"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Kontakt
-              </Link>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center px-6 py-3 bg-red-500 text-white font-medium rounded-lg"
+                className="inline-flex items-center justify-center px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Darmowa konsultacja
