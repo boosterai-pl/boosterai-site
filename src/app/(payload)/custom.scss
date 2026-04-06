@@ -1,31 +1,74 @@
 // Booster AI — dark navy/blue admin theme
+// Overrides Payload 3.x CSS custom properties for a dark navy + electric blue palette.
+
 :root,
 [data-theme='light'],
 [data-theme='dark'] {
-  // Sidebar / nav background
-  --theme-bg: #0f172a;
+  // ── Elevation scale (0 = darkest bg, 1000 = lightest/text) ──────────────────
   --theme-elevation-0: #0f172a;
-  --theme-elevation-50: #1e293b;
+  --theme-elevation-50: #131f35;
   --theme-elevation-100: #1e293b;
   --theme-elevation-150: #243247;
   --theme-elevation-200: #2d3e57;
-  --theme-elevation-500: #334d6e;
+  --theme-elevation-250: #334562;
+  --theme-elevation-300: #3a4d6e;
+  --theme-elevation-350: #405579;
+  --theme-elevation-400: #475d84;
+  --theme-elevation-450: #4e668f;
+  --theme-elevation-500: #556e9a;
+  --theme-elevation-550: #5c76a5;
+  --theme-elevation-600: #637fb0;
+  --theme-elevation-700: #7090be;
+  --theme-elevation-750: #7a9bc8;
   --theme-elevation-800: #3b82f6;
+  --theme-elevation-850: #60a5fa;
   --theme-elevation-900: #60a5fa;
+  --theme-elevation-950: #7eb4fb;
   --theme-elevation-1000: #93c5fd;
 
-  // Primary brand color (electric blue)
+  // ── Page / sidebar background ────────────────────────────────────────────────
+  --theme-bg: #0f172a;
+
+  // ── Text ─────────────────────────────────────────────────────────────────────
+  --theme-text: #f1f5f9;
+
+  // ── Borders ──────────────────────────────────────────────────────────────────
+  --theme-border-color: #334d6e;
+
+  // ── Inputs ───────────────────────────────────────────────────────────────────
+  --theme-input-bg: #1e293b;
+
+  // ── Success (green → rebranded to brand blue for consistency) ────────────────
   --theme-success-50: #eff6ff;
+  --theme-success-100: #dbeafe;
+  --theme-success-200: #bfdbfe;
+  --theme-success-300: #93c5fd;
+  --theme-success-400: #60a5fa;
   --theme-success-500: #3b82f6;
   --theme-success-600: #2563eb;
+  --theme-success-650: #1d4ed8;
+  --theme-success-700: #1d4ed8;
+  --theme-success-750: #1e40af;
+  --theme-success-800: #1e3a8a;
+  --theme-success-900: #1e3a8a;
 
-  // Text
-  --theme-text: #f1f5f9;
-  --theme-text-secondary: #94a3b8;
+  // ── Error (red — keep standard red for legibility) ───────────────────────────
+  --theme-error-50: #fef2f2;
+  --theme-error-100: #fee2e2;
+  --theme-error-200: #fecaca;
+  --theme-error-300: #fca5a5;
+  --theme-error-400: #f87171;
+  --theme-error-500: #ef4444;
+  --theme-error-600: #dc2626;
+  --theme-error-650: #b91c1c;
+  --theme-error-700: #b91c1c;
+  --theme-error-750: #991b1b;
+  --theme-error-800: #7f1d1d;
+  --theme-error-900: #7f1d1d;
 
-  // Accent / interactive
-  --color-base-blue-medium: #3b82f6;
-
-  // Input / form backgrounds
-  --theme-input-bg: #1e293b;
+  // ── Warning (amber — keep standard amber for legibility) ─────────────────────
+  --theme-warning-50: #fffbeb;
+  --theme-warning-500: #f59e0b;
+  --theme-warning-600: #d97706;
+  --theme-warning-900: #92400e;
 }
