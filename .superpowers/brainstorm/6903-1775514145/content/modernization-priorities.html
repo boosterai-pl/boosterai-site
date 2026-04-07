@@ -1,0 +1,230 @@
+<h2>What Should We Modernize?</h2>
+<p class="subtitle">
+  I've captured the full boosterai.pl structure. Now let's decide which aspects to improve in the
+  "modernized evolution".
+</p>
+
+<div class="section" style="background: #f9fafb; padding: 1.5rem; border-radius: 8px">
+  <h3 style="margin: 0 0 1rem 0">Full Site Structure Captured:</h3>
+  <ol style="margin: 0; padding-left: 1.5rem; line-height: 2; font-size: 0.95rem">
+    <li><strong>Header</strong> — Logo, nav links, "Darmowa konsultacja" CTA</li>
+    <li>
+      <strong>Hero</strong> — Title, tagline, Kontakt button, "300+ automatyzacji" badge,
+      illustration
+    </li>
+    <li>
+      <strong>Sales Booster</strong> — Section intro + 4 service cards (including Generowanie leadów
+      B2B)
+    </li>
+    <li><strong>AI Booster</strong> — Section intro + 4 service cards</li>
+    <li><strong>Współpraca</strong> — Blue section banner</li>
+    <li>
+      <strong>Process Steps</strong> — 3 large numbered steps (01 Analiza, 02 Plan, 03 Realizacja)
+    </li>
+    <li><strong>Use Cases Preview</strong> — "Poznaj nasze wdrożenia" + 2 case study cards</li>
+    <li><strong>Footer</strong> — Multi-column layout with Usługi, Materiały, Kontakt sections</li>
+  </ol>
+</div>
+
+<h2 style="margin-top: 2rem">Select Modernization Priorities</h2>
+<p class="subtitle">Pick what matters most (you can select multiple)</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="responsive" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Responsive Design</h3>
+      <p>
+        Ensure perfect mobile/tablet experience with proper breakpoints, touch targets, and fluid
+        typography
+      </p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> Better user experience on all devices, improved mobile conversion
+        rates
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="accessibility" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Accessibility (WCAG)</h3>
+      <p>
+        Proper semantic HTML, ARIA labels, keyboard navigation, color contrast ratios, screen reader
+        support
+      </p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> Legal compliance, broader audience reach, better SEO
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="performance" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Performance Optimization</h3>
+      <p>Image optimization (Next.js Image), lazy loading, code splitting, faster page loads</p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> Better Core Web Vitals, improved SEO rankings, lower bounce rate
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="animations" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>Smooth Animations</h3>
+      <p>
+        Scroll-triggered animations, smooth transitions, hover effects, micro-interactions (respect
+        prefers-reduced-motion)
+      </p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> More engaging, professional feel, better perceived quality
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="dark-mode" onclick="toggleSelect(this)">
+    <div class="letter">E</div>
+    <div class="content">
+      <h3>Dark Mode Support</h3>
+      <p>
+        Automatic dark theme based on system preference with proper contrast and color adjustments
+      </p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> Modern feature, better for evening browsing, reduced eye strain
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="typography" onclick="toggleSelect(this)">
+    <div class="letter">F</div>
+    <div class="content">
+      <h3>Modern Typography</h3>
+      <p>
+        Better font hierarchy, improved readability, optimized line heights and spacing, variable
+        fonts
+      </p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> More professional appearance, better content hierarchy, easier to
+        scan
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="spacing" onclick="toggleSelect(this)">
+    <div class="letter">G</div>
+    <div class="content">
+      <h3>Consistent Spacing System</h3>
+      <p>8pt grid system with Tailwind spacing tokens, better visual rhythm and whitespace</p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> Cleaner layout, more polished look, easier to maintain
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="icons" onclick="toggleSelect(this)">
+    <div class="letter">H</div>
+    <div class="content">
+      <h3>Better Icon System</h3>
+      <p>Replace emoji/basic icons with professional icon library (Heroicons, Lucide, Phosphor)</p>
+      <div
+        style="
+          margin-top: 0.75rem;
+          padding: 0.75rem;
+          background: #fef3c7;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>Impact:</strong> More professional, consistent style, better scalability
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px">
+  <h3 style="margin: 0 0 1rem 0">My Recommendations:</h3>
+  <p style="margin: 0 0 1rem 0">For a B2B AI/automation agency, I'd prioritize:</p>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 2">
+    <li>
+      <strong>A + B + C (Must-have):</strong> Responsive, Accessibility, Performance — these are
+      foundational
+    </li>
+    <li>
+      <strong>F + G + H (High value):</strong> Typography, Spacing, Icons — give the most
+      professional polish
+    </li>
+    <li><strong>D (Nice-to-have):</strong> Animations — add engagement without complexity</li>
+    <li><strong>E (Optional):</strong> Dark mode — nice but not critical for B2B marketing site</li>
+  </ul>
+</div>
+
+<div
+  style="
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #fef2f2;
+    border-left: 3px solid #ef4444;
+    font-size: 0.9rem;
+  "
+>
+  <strong>Note:</strong> Select multiple options! These aren't mutually exclusive. Choose all that
+  align with your goals and timeline.
+</div>

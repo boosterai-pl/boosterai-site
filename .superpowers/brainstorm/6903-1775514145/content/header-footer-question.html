@@ -1,0 +1,169 @@
+<h2>Header & Footer Architecture</h2>
+<p class="subtitle">Should the header and footer be global components or managed per-page?</p>
+
+<div class="section">
+  <p>
+    Since you'll have multiple pages (Homepage, Use Cases, Blog, etc.), we need to decide how the
+    header and footer should work.
+  </p>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="global-components" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Global Components (Recommended)</h3>
+      <p><strong>Header and Footer as shared React components</strong></p>
+
+      <div
+        style="
+          margin-top: 1rem;
+          padding: 1rem;
+          background: #f9fafb;
+          border-radius: 6px;
+          font-family: monospace;
+          font-size: 0.85rem;
+        "
+      >
+        <div style="color: #6b7280">// Layout structure:</div>
+        <div>src/components/</div>
+        <div>&nbsp;&nbsp;Header.tsx</div>
+        <div>&nbsp;&nbsp;Footer.tsx</div>
+        <div style="margin-top: 0.5rem">src/app/(frontend)/</div>
+        <div>&nbsp;&nbsp;layout.tsx → includes Header + Footer</div>
+        <div>&nbsp;&nbsp;page.tsx → homepage content only</div>
+        <div>&nbsp;&nbsp;use-cases/page.tsx</div>
+        <div>&nbsp;&nbsp;blog/page.tsx</div>
+      </div>
+
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Consistent across all pages automatically</li>
+            <li>Single source of truth for navigation</li>
+            <li>Easy to update (change once, affects all pages)</li>
+            <li>Better for SEO consistency</li>
+            <li>Standard Next.js pattern</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Less flexibility per-page (though rarely needed)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        style="margin-top: 1rem; padding: 1rem; background: #fffbeb; border-left: 3px solid #f59e0b"
+      >
+        <strong>Content management:</strong> Navigation links can be hardcoded in components OR
+        managed via Payload global if you need non-technical editors to change them.
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="payload-managed" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Payload-Managed Header/Footer</h3>
+      <p><strong>Header and Footer content stored in Payload CMS globals</strong></p>
+
+      <div
+        style="
+          margin-top: 1rem;
+          padding: 1rem;
+          background: #f9fafb;
+          border-radius: 6px;
+          font-family: monospace;
+          font-size: 0.85rem;
+        "
+      >
+        <div style="color: #6b7280">// Structure:</div>
+        <div>src/globals/</div>
+        <div>&nbsp;&nbsp;Header.ts → logo, nav items, CTA</div>
+        <div>&nbsp;&nbsp;Footer.ts → columns, links, social</div>
+        <div style="margin-top: 0.5rem">src/components/</div>
+        <div>&nbsp;&nbsp;Header.tsx → fetches from Payload</div>
+        <div>&nbsp;&nbsp;Footer.tsx → fetches from Payload</div>
+      </div>
+
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Non-technical users can update navigation</li>
+            <li>All content in one system (Payload)</li>
+            <li>Can preview changes before publishing</li>
+            <li>Useful if nav items change frequently</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>More complex setup</li>
+            <li>Additional database queries per page load</li>
+            <li>Overkill if nav is stable</li>
+            <li>More migrations when changing structure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hybrid Approach</h3>
+      <p><strong>Component-based structure + Payload for dynamic parts</strong></p>
+
+      <div
+        style="
+          margin-top: 1rem;
+          padding: 1rem;
+          background: #f9fafb;
+          border-radius: 6px;
+          font-family: monospace;
+          font-size: 0.85rem;
+        "
+      >
+        <div style="color: #6b7280">// Structure:</div>
+        <div>src/components/</div>
+        <div>&nbsp;&nbsp;Header.tsx → structure hardcoded</div>
+        <div>&nbsp;&nbsp;Footer.tsx → structure hardcoded</div>
+        <div style="margin-top: 0.5rem">Payload CTA text in Homepage global</div>
+        <div>→ "Darmowa konsultacja" comes from CMS</div>
+      </div>
+
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Fast (minimal CMS queries)</li>
+            <li>Structure is stable (developer controlled)</li>
+            <li>Dynamic parts (CTA text) editable by clients</li>
+            <li>Best of both worlds</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Split between code and CMS</li>
+            <li>Need developer for nav structure changes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 2rem; padding: 1.5rem; background: #f0f9ff; border-radius: 8px">
+  <h3 style="margin: 0 0 1rem 0">My Recommendation: Option A (Global Components)</h3>
+  <p style="margin: 0; line-height: 1.7">
+    For a marketing site where the navigation structure rarely changes, global React components are
+    the simplest and fastest approach. You can always migrate to Payload-managed later if needed.
+    The navigation items (Booster, Usługi, Use cases, Kontakt, Darmowa konsultacja) can be hardcoded
+    since they're unlikely to change frequently.
+  </p>
+</div>

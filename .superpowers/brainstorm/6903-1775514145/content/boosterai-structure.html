@@ -1,0 +1,154 @@
+<h2>Homepage Structure Based on boosterai.pl</h2>
+<p class="subtitle">
+  I've analyzed the current boosterai.pl site. Here's what I found and how we should structure it:
+</p>
+
+<div class="section">
+  <h3>Current Site Structure</h3>
+  <div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin-top: 1rem">
+    <ol style="margin: 0; padding-left: 1.5rem; line-height: 2">
+      <li>
+        <strong>Header/Navigation</strong> — Logo, nav links (Booster, Usługi, Use cases, Kontakt),
+        "Darmowa konsultacja" CTA
+      </li>
+      <li>
+        <strong>Hero Section</strong> — "Booster 🚀 AI & Automation Agency" with tagline, CTA
+        button, badge about LLMs, illustration
+      </li>
+      <li>
+        <strong>Sales Booster Section</strong> — Section title + 4 service cards (Strategie B2B,
+        Wdrożenia CRM, Konsultacje, Generowanie leadów)
+      </li>
+      <li>
+        <strong>AI Booster Section</strong> — Section title + 4+ service cards (AI Voice Boty, AI
+        Chat Boty, AI Document Processing, Wdrożenia indywidualne)
+      </li>
+      <li><strong>Współpraca Section</strong> — (Need to scroll more to see full content)</li>
+      <li><strong>Process/Steps</strong> — (Need to verify)</li>
+      <li><strong>Footer</strong> — (Need to capture)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 2rem">
+  <h3>Your Payload CMS Schema Already Matches!</h3>
+  <p>Good news: The Homepage global you have already supports this structure:</p>
+  <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin-top: 1rem">
+    <ul style="margin: 0; padding-left: 1.5rem">
+      <li>✅ <code>hero</code> — headline, subheadline, CTA, background image</li>
+      <li>✅ <code>salesBooster</code> — section title, subtitle, services array (with icons)</li>
+      <li>✅ <code>aiBooster</code> — section title, subtitle, services array (with icons)</li>
+      <li>✅ <code>processSteps</code> — section title, steps array</li>
+      <li>✅ <code>cta</code> — final call-to-action</li>
+    </ul>
+  </div>
+</div>
+
+<h2 style="margin-top: 3rem">Implementation Approach Question</h2>
+<p class="subtitle">
+  Now that we know the structure matches, how should we handle the visual design?
+</p>
+
+<div class="options">
+  <div class="option" data-choice="exact-replica" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Exact Visual Replica</h3>
+      <p><strong>Match the current boosterai.pl design pixel-by-pixel</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Zero risk — familiar to existing users</li>
+            <li>Faster to implement — clear reference</li>
+            <li>Keep existing brand consistency</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>May inherit design debt from old site</li>
+            <li>Miss opportunity to modernize</li>
+            <li>Harder to maintain if design is complex</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="modernized" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Modernized Evolution</h3>
+      <p><strong>Same structure, improved design system (Recommended)</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Keep familiar structure + content</li>
+            <li>Improve accessibility, responsiveness</li>
+            <li>Cleaner, more maintainable code</li>
+            <li>Better dark mode support</li>
+            <li>Smoother animations and interactions</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Requires design decisions</li>
+            <li>Slightly longer implementation</li>
+          </ul>
+        </div>
+      </div>
+      <p
+        style="
+          margin-top: 1rem;
+          padding: 1rem;
+          background: #fffbeb;
+          border-left: 3px solid #f59e0b;
+          font-size: 0.9rem;
+        "
+      >
+        <strong>My recommendation:</strong> Keep the structure and content hierarchy identical, but
+        use modern Tailwind CSS v4, better spacing, improved typography, and smoother transitions.
+        The site will feel familiar but more polished.
+      </p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Phase 1: Replica, Phase 2: Enhance</h3>
+      <p><strong>Start with exact replica, iterate later</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Get to production fastest</li>
+            <li>Can A/B test improvements later</li>
+            <li>De-risk the migration</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Two rounds of work</li>
+            <li>May ship technical debt initially</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 3rem; padding: 1.5rem; background: #f0f9ff; border-radius: 8px">
+  <h3 style="margin: 0 0 1rem 0">Next Steps After This Decision:</h3>
+  <ol style="margin: 0; padding-left: 1.5rem; line-height: 2">
+    <li>I'll capture more of the existing site (footer, other sections)</li>
+    <li>Clarify header/footer behavior (global components vs page-specific?)</li>
+    <li>Discuss navigation structure</li>
+    <li>Present complete design spec</li>
+    <li>Get your approval and create implementation plan</li>
+  </ol>
+</div>

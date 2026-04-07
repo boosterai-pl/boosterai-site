@@ -1,0 +1,308 @@
+<h2>Which homepage layout approach feels right for BoosterAI?</h2>
+<p class="subtitle">
+  Consider your brand personality and how you want visitors to experience the content
+</p>
+
+<div class="options">
+  <div class="option" data-choice="single-scroll" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Single Page Scroll</h3>
+      <p><strong>Modern, immersive storytelling</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Smooth narrative flow from hero → services → process → CTA</li>
+            <li>Mobile-friendly (natural scrolling behavior)</li>
+            <li>High engagement - guides users through entire story</li>
+            <li>Perfect for conversion-focused landing pages</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Can feel long on desktop if not optimized</li>
+            <li>All content loads at once (larger initial payload)</li>
+            <li>Navigation requires smooth scroll to anchors</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mockup" style="margin-top: 1rem">
+        <div class="mockup-header">Preview</div>
+        <div class="mockup-body" style="padding: 1.5rem">
+          <div class="mock-nav">BoosterAI Logo | Oferta | Use Cases | Blog | Kontakt</div>
+          <div
+            style="
+              margin-top: 2rem;
+              padding: 3rem 1rem;
+              background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+              color: white;
+              text-align: center;
+              border-radius: 8px;
+            "
+          >
+            <h2 style="margin: 0; color: white">Hero Section</h2>
+            <p style="margin: 0.5rem 0; color: rgba(255, 255, 255, 0.9)">Big headline + CTA</p>
+          </div>
+          <div
+            style="margin-top: 1.5rem; padding: 2rem 1rem; background: #f3f4f6; border-radius: 8px"
+          >
+            <h3 style="margin: 0 0 1rem 0">Sales Booster Services</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem">
+              <div class="placeholder" style="height: 100px">Service 1</div>
+              <div class="placeholder" style="height: 100px">Service 2</div>
+              <div class="placeholder" style="height: 100px">Service 3</div>
+            </div>
+          </div>
+          <div
+            style="margin-top: 1.5rem; padding: 2rem 1rem; background: #f9fafb; border-radius: 8px"
+          >
+            <h3 style="margin: 0 0 1rem 0">AI Booster Services</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem">
+              <div class="placeholder" style="height: 100px">Service 1</div>
+              <div class="placeholder" style="height: 100px">Service 2</div>
+              <div class="placeholder" style="height: 100px">Service 3</div>
+            </div>
+          </div>
+          <div
+            style="margin-top: 1.5rem; padding: 2rem 1rem; background: #f3f4f6; border-radius: 8px"
+          >
+            <h3 style="margin: 0 0 1rem 0">Process Steps</h3>
+            <div style="display: flex; gap: 1rem; align-items: center">
+              <div class="placeholder" style="flex: 1; height: 80px">Step 1</div>
+              <span>→</span>
+              <div class="placeholder" style="flex: 1; height: 80px">Step 2</div>
+              <span>→</span>
+              <div class="placeholder" style="flex: 1; height: 80px">Step 3</div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1.5rem;
+              padding: 3rem 1rem;
+              background: #1e40af;
+              color: white;
+              text-align: center;
+              border-radius: 8px;
+            "
+          >
+            <h3 style="margin: 0; color: white">Final CTA</h3>
+            <button class="mock-button" style="margin-top: 1rem; background: white; color: #1e40af">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="tabbed-sections" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Tabbed Service Sections</h3>
+      <p><strong>Interactive, content-focused exploration</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Reduces visual clutter - users see what they want</li>
+            <li>Great for comparing Sales Booster vs AI Booster</li>
+            <li>Feels modern and interactive</li>
+            <li>Smaller initial viewport (faster perceived load)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Users may miss content in non-default tabs</li>
+            <li>Requires more interaction (not passive scroll)</li>
+            <li>Slightly more complex state management</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mockup" style="margin-top: 1rem">
+        <div class="mockup-header">Preview</div>
+        <div class="mockup-body" style="padding: 1.5rem">
+          <div class="mock-nav">BoosterAI Logo | Oferta | Use Cases | Blog | Kontakt</div>
+          <div
+            style="
+              margin-top: 2rem;
+              padding: 3rem 1rem;
+              background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+              color: white;
+              text-align: center;
+              border-radius: 8px;
+            "
+          >
+            <h2 style="margin: 0; color: white">Hero Section</h2>
+            <p style="margin: 0.5rem 0; color: rgba(255, 255, 255, 0.9)">Big headline + CTA</p>
+          </div>
+          <div style="margin-top: 2rem">
+            <div
+              style="
+                display: flex;
+                gap: 1rem;
+                border-bottom: 2px solid #e5e7eb;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <div
+                style="
+                  padding: 0.75rem 1.5rem;
+                  border-bottom: 3px solid #3b82f6;
+                  margin-bottom: -2px;
+                  font-weight: 600;
+                  color: #3b82f6;
+                "
+              >
+                Sales Booster
+              </div>
+              <div style="padding: 0.75rem 1.5rem; color: #6b7280; cursor: pointer">AI Booster</div>
+            </div>
+            <div style="padding: 1.5rem; background: #f9fafb; border-radius: 8px">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem">
+                <div class="placeholder" style="height: 120px">Service 1</div>
+                <div class="placeholder" style="height: 120px">Service 2</div>
+                <div class="placeholder" style="height: 120px">Service 3</div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="margin-top: 2rem; padding: 2rem 1rem; background: #f3f4f6; border-radius: 8px"
+          >
+            <h3 style="margin: 0 0 1rem 0">How We Work</h3>
+            <div style="display: flex; gap: 1rem">
+              <div class="placeholder" style="flex: 1; height: 80px">Step 1</div>
+              <div class="placeholder" style="flex: 1; height: 80px">Step 2</div>
+              <div class="placeholder" style="flex: 1; height: 80px">Step 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="hybrid-modular" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hybrid Modular Layout</h3>
+      <p><strong>Best of both - scroll + expandable sections</strong></p>
+      <div class="pros-cons" style="margin-top: 1rem">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Scannable overview + detailed exploration on demand</li>
+            <li>Progressive disclosure - advanced features hidden initially</li>
+            <li>Flexible - can work for complex service portfolios</li>
+            <li>Good SEO (all content present, but UX optimized)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>More complex interaction patterns</li>
+            <li>Requires clear visual affordances (expand icons)</li>
+            <li>Can feel overwhelming if not designed carefully</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mockup" style="margin-top: 1rem">
+        <div class="mockup-header">Preview</div>
+        <div class="mockup-body" style="padding: 1.5rem">
+          <div class="mock-nav">BoosterAI Logo | Oferta | Use Cases | Blog | Kontakt</div>
+          <div
+            style="
+              margin-top: 2rem;
+              padding: 3rem 1rem;
+              background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+              color: white;
+              text-align: center;
+              border-radius: 8px;
+            "
+          >
+            <h2 style="margin: 0; color: white">Hero Section</h2>
+            <p style="margin: 0.5rem 0; color: rgba(255, 255, 255, 0.9)">Big headline + CTA</p>
+          </div>
+          <div style="margin-top: 2rem">
+            <div
+              style="
+                padding: 1.5rem;
+                background: #f3f4f6;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <h3 style="margin: 0">Sales Booster</h3>
+                <p style="margin: 0.5rem 0 0 0; color: #6b7280">
+                  Click to explore our sales optimization services
+                </p>
+              </div>
+              <span style="font-size: 1.5rem; color: #3b82f6">▼</span>
+            </div>
+            <div
+              style="
+                margin-top: 1rem;
+                padding: 1.5rem;
+                background: white;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                display: none;
+              "
+            >
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem">
+                <div class="placeholder" style="height: 100px">Service 1</div>
+                <div class="placeholder" style="height: 100px">Service 2</div>
+                <div class="placeholder" style="height: 100px">Service 3</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem">
+            <div
+              style="
+                padding: 1.5rem;
+                background: #f9fafb;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <h3 style="margin: 0">AI Booster</h3>
+                <p style="margin: 0.5rem 0 0 0; color: #6b7280">
+                  Click to explore our AI transformation services
+                </p>
+              </div>
+              <span style="font-size: 1.5rem; color: #3b82f6">▼</span>
+            </div>
+          </div>
+          <div
+            style="margin-top: 2rem; padding: 2rem 1rem; background: #f3f4f6; border-radius: 8px"
+          >
+            <h3 style="margin: 0 0 1rem 0">Our Process</h3>
+            <div style="display: flex; gap: 0.5rem">
+              <div class="placeholder" style="flex: 1; height: 60px; font-size: 0.875rem">
+                1. Discovery
+              </div>
+              <div class="placeholder" style="flex: 1; height: 60px; font-size: 0.875rem">
+                2. Strategy
+              </div>
+              <div class="placeholder" style="flex: 1; height: 60px; font-size: 0.875rem">
+                3. Implement
+              </div>
+              <div class="placeholder" style="flex: 1; height: 60px; font-size: 0.875rem">
+                4. Optimize
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

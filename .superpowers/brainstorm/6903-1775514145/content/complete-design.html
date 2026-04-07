@@ -1,0 +1,407 @@
+<h2>Homepage Design — Complete Specification</h2>
+<p class="subtitle">
+  Modernized evolution of boosterai.pl with responsive design, accessibility, and performance focus
+</p>
+
+<div
+  class="section"
+  style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1.5rem; margin-bottom: 2rem"
+>
+  <h3 style="margin: 0 0 1rem 0">✅ Design Decisions Summary</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 2">
+    <li><strong>Approach:</strong> Modernized Evolution (same structure, improved quality)</li>
+    <li><strong>Architecture:</strong> Global Header/Footer components</li>
+    <li><strong>Priorities:</strong> Responsive + Accessibility + Performance</li>
+    <li><strong>Content Source:</strong> Existing boosterai.pl structure</li>
+  </ul>
+</div>
+
+<h2>1. Architecture & Component Structure</h2>
+
+<div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin: 1rem 0">
+  <h3 style="margin: 0 0 1rem 0">File Organization</h3>
+  <pre style="margin: 0; font-family: monospace; font-size: 0.85rem; line-height: 1.6">
+<span style="color: #6b7280;">// Global Layout Components</span>
+src/components/
+  Header.tsx           — Logo, nav links, CTA button
+  Footer.tsx           — Multi-column footer with links
+
+<span style="color: #6b7280;">// Homepage Sections (modular components)</span>
+src/components/homepage/
+  HeroSection.tsx      — Main headline + CTA + illustration
+  ServicesSection.tsx  — Reusable for Sales & AI Booster
+  ProcessSection.tsx   — 3-step process cards
+  CTASection.tsx       — Final call-to-action
+
+<span style="color: #6b7280;">// Page Implementation</span>
+src/app/(frontend)/
+  layout.tsx           — Includes Header + Footer
+  page.tsx             — Homepage composition (fetches from Payload)
+  </pre>
+</div>
+
+<h2 style="margin-top: 2rem">2. Payload CMS Schema Adjustments</h2>
+
+<div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1rem 0">
+  <h3 style="margin: 0 0 1rem 0">Required Changes to Homepage.ts</h3>
+
+  <p style="margin: 0 0 1rem 0">
+    <strong>Current schema is 90% good!</strong> Minor additions needed:
+  </p>
+
+  <div style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem">
+    <h4 style="margin: 0 0 0.5rem 0">Add to hero group:</h4>
+    <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+      <li><code>badgeText</code> (text) — "Najpopularniejsze LLMy dla Twojej firmy"</li>
+      <li><code>badgeSubtext</code> (text) — "Ponad 300 gotowych automatyzacji"</li>
+      <li><code>illustration</code> (upload) — Hero image/illustration</li>
+    </ul>
+  </div>
+
+  <div style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem">
+    <h4 style="margin: 0 0 0.5rem 0">Add new group for "Współpraca" section:</h4>
+    <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+      <li>
+        <code>collaborationBanner</code> (group) with <code>title</code> and <code>link</code>
+      </li>
+    </ul>
+  </div>
+
+  <div style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem">
+    <h4 style="margin: 0 0 0.5rem 0">Add Use Cases preview section:</h4>
+    <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+      <li>
+        <code>useCasesSection</code> (group) with <code>sectionTitle</code> and
+        <code>featuredCases</code> (relationship to UseCases collection, max: 2)
+      </li>
+    </ul>
+  </div>
+</div>
+
+<h2 style="margin-top: 2rem">3. Responsive Design Implementation</h2>
+
+<div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin: 1rem 0">
+  <h3 style="margin: 0 0 1rem 0">Breakpoint Strategy</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+    <thead>
+      <tr style="background: #e5e7eb">
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">Breakpoint</th>
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">Layout</th>
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">Key Changes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db"><code>mobile (< 768px)</code></td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">Single column</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Hamburger menu, stacked cards, larger touch targets (min 44×44px)
+        </td>
+      </tr>
+      <tr style="background: #f9fafb">
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db"><code>tablet (768px+)</code></td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">2-column grid</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Service cards in 2 columns, horizontal nav
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db"><code>desktop (1024px+)</code></td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">3-4 column grid</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Full horizontal layout, optimized spacing
+        </td>
+      </tr>
+      <tr style="background: #f9fafb">
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db"><code>xl (1280px+)</code></td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">Max-width container</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Centered layout with max 1280px width
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 style="margin-top: 2rem">4. Accessibility Standards (WCAG 2.1 AA)</h2>
+
+<div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin: 1rem 0">
+  <h3 style="margin: 0 0 1rem 0">Implementation Checklist</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 2">
+    <li>
+      ✅ <strong>Semantic HTML:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+      <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>
+    </li>
+    <li>
+      ✅ <strong>Keyboard Navigation:</strong> All interactive elements accessible via
+      Tab/Enter/Space
+    </li>
+    <li>✅ <strong>Focus Indicators:</strong> Visible focus rings (custom styled, not removed)</li>
+    <li>
+      ✅ <strong>ARIA Labels:</strong> <code>aria-label</code> on icon buttons,
+      <code>aria-current</code> on active nav items
+    </li>
+    <li>
+      ✅ <strong>Color Contrast:</strong> Minimum 4.5:1 for text, 3:1 for large text/UI components
+    </li>
+    <li>
+      ✅ <strong>Alt Text:</strong> Descriptive alt text for all images (pulled from Payload Media)
+    </li>
+    <li>✅ <strong>Skip Links:</strong> "Skip to main content" link at top of page</li>
+    <li>
+      ✅ <strong>Form Labels:</strong> Proper <code>&lt;label&gt;</code> associations (for contact
+      forms)
+    </li>
+  </ul>
+</div>
+
+<h2 style="margin-top: 2rem">5. Performance Optimization</h2>
+
+<div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin: 1rem 0">
+  <h3 style="margin: 0 0 1rem 0">Core Web Vitals Targets</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+    <thead>
+      <tr style="background: #e5e7eb">
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">Metric</th>
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">Target</th>
+        <th style="padding: 0.75rem; text-align: left; border: 1px solid #d1d5db">
+          Implementation
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          <strong>LCP</strong> (Largest Contentful Paint)
+        </td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">< 2.5s</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Next.js Image with priority flag on hero image
+        </td>
+      </tr>
+      <tr style="background: #f9fafb">
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          <strong>FID</strong> (First Input Delay)
+        </td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">< 100ms</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Minimal JS, defer non-critical scripts
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          <strong>CLS</strong> (Cumulative Layout Shift)
+        </td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">< 0.1</td>
+        <td style="padding: 0.75rem; border: 1px solid #d1d5db">
+          Explicit width/height on images, font-display: swap
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin: 2rem 0 1rem 0">Optimization Techniques</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 2">
+    <li>
+      ✅ <strong>Image Optimization:</strong> Next.js <code>&lt;Image&gt;</code> component with
+      automatic WebP/AVIF conversion
+    </li>
+    <li>✅ <strong>Lazy Loading:</strong> Below-the-fold images lazy-loaded automatically</li>
+    <li>
+      ✅ <strong>Font Optimization:</strong> <code>next/font/google</code> with font subsetting
+    </li>
+    <li>
+      ✅ <strong>Static Generation:</strong> Homepage as SSG with revalidation (ISR) every 60
+      seconds
+    </li>
+    <li>
+      ✅ <strong>Payload Query Optimization:</strong> Select only needed fields, no unnecessary
+      relations
+    </li>
+  </ul>
+</div>
+
+<h2 style="margin-top: 2rem">6. Section-by-Section Breakdown</h2>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Header Component</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li><strong>Layout:</strong> Fixed position with backdrop blur on scroll</li>
+    <li><strong>Logo:</strong> SVG from <code>/public/</code>, links to homepage</li>
+    <li><strong>Navigation:</strong> Booster, Usługi (dropdown?), Use cases, Kontakt</li>
+    <li><strong>CTA:</strong> "Darmowa konsultacja" button (prominent, high contrast)</li>
+    <li><strong>Mobile:</strong> Hamburger menu with slide-in drawer</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Hero Section</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li>
+      <strong>Layout:</strong> Two-column (text left, illustration right) on desktop, stacked on
+      mobile
+    </li>
+    <li><strong>Headline:</strong> Large, bold, gradient text effect</li>
+    <li><strong>Subheadline:</strong> Secondary text below headline</li>
+    <li><strong>Badge:</strong> Small pill with icon showing "300+ automatyzacji"</li>
+    <li><strong>CTA:</strong> Primary button → "Kontakt"</li>
+    <li><strong>Illustration:</strong> Right side, optimized with Next/Image priority</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Sales Booster & AI Booster Sections</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li>
+      <strong>Reusable Component:</strong> <code>&lt;ServicesSection /&gt;</code> accepts props
+    </li>
+    <li><strong>Layout:</strong> Section title + grid of service cards</li>
+    <li><strong>Card Grid:</strong> 1 col mobile, 2 col tablet, 4 col desktop</li>
+    <li><strong>Card Content:</strong> Icon (from Payload Media), title, description</li>
+    <li><strong>Styling:</strong> Light background with subtle border, hover lift effect</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Współpraca Banner</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li><strong>Layout:</strong> Full-width blue section with centered text</li>
+    <li><strong>Content:</strong> Title with link/CTA</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Process Steps Section</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li><strong>Layout:</strong> 3 large cards with big numbers (01, 02, 03)</li>
+    <li><strong>Card Grid:</strong> 1 col mobile, 3 col desktop</li>
+    <li><strong>Styling:</strong> Light gradient background, large number typography</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Use Cases Preview</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li><strong>Layout:</strong> Section title + 2 featured case study cards</li>
+    <li><strong>Data Source:</strong> Relationship to UseCases collection (max 2)</li>
+    <li><strong>Card Content:</strong> Image, category badge, title, excerpt</li>
+  </ul>
+</div>
+
+<div
+  style="
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  "
+>
+  <h3 style="margin: 0 0 1rem 0">Footer Component</h3>
+  <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8">
+    <li><strong>Layout:</strong> Multi-column grid (4 col desktop, 2 col tablet, 1 col mobile)</li>
+    <li><strong>Columns:</strong> Usługi, Materiały, Kontakt, (optional: About/Social)</li>
+    <li><strong>Bottom:</strong> Copyright + privacy links</li>
+  </ul>
+</div>
+
+<h2 style="margin-top: 2rem">7. Data Flow</h2>
+
+<div
+  style="
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  "
+>
+  <span style="color: #6b7280">// src/app/(frontend)/page.tsx</span><br />
+  export default async function HomePage() {<br />
+  &nbsp;&nbsp;const payload = await getPayload({ config })<br />
+  &nbsp;&nbsp;<br />
+  &nbsp;&nbsp;const homepage = await payload.findGlobal({<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;slug: 'homepage',<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;depth: 2, <span style="color: #6b7280">// Include media relations</span
+  ><br />
+  &nbsp;&nbsp;})<br />
+  <br />
+  &nbsp;&nbsp;return (<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HeroSection data={homepage.hero} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ServicesSection data={homepage.salesBooster} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ServicesSection data={homepage.aiBooster} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ProcessSection data={homepage.processSteps} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;UseCasesPreview data={homepage.useCasesSection} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;CTASection data={homepage.cta} /&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/&gt;<br />
+  &nbsp;&nbsp;)<br />
+  }
+</div>
+
+<div
+  style="
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+  "
+>
+  <h2 style="margin: 0 0 1rem 0; color: white">Does this design look good to you?</h2>
+  <p style="margin: 0; font-size: 1.1rem; opacity: 0.95">
+    If yes, I'll write the detailed design doc and we'll move to implementation planning.<br />
+    If you want changes, let me know what to adjust!
+  </p>
+</div>
