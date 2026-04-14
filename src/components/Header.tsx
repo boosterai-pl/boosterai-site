@@ -106,7 +106,7 @@ export default function Header() {
             href="/kontakt"
             className={`hidden md:inline-flex items-center px-6 py-2.5 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors motion-reduce:transition-none ${focusRing}`}
           >
-            Darmowa konsultacja
+            Umów spotkanie
           </Link>
 
           {/* Mobile Menu Button */}
@@ -154,7 +154,7 @@ export default function Header() {
                 className={`inline-flex items-center justify-center px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors motion-reduce:transition-none ${focusRing}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Darmowa konsultacja
+                Umów spotkanie
               </Link>
             </nav>
           </div>
