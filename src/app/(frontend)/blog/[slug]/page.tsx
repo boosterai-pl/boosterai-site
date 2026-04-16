@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,7 +16,7 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>
 }
 
-async function getPost(slug: string) {
+const getPost = cache(async (slug: string) => {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
 
@@ -30,7 +31,7 @@ async function getPost(slug: string) {
   })
 
   return result.docs[0] ?? null
-}
+})
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
