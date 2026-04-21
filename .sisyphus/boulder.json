@@ -1,0 +1,32 @@
+{
+  "active_plan": "/Users/macszymon/Documents/BoosterAI/boosterai-site/.sisyphus/plans/blog-listing-page.md",
+  "started_at": "2026-04-16T06:46:48.258Z",
+  "session_ids": [
+    "ses_26b11865effeKGadvW4LB143Un"
+  ],
+  "session_origins": {
+    "ses_26b11865effeKGadvW4LB143Un": "direct"
+  },
+  "plan_name": "blog-listing-page",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Create `BlogPostCard` component",
+      "session_id": "ses_26af3d020ffe4yxPpckDvhcSPi",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-04-16T06:49:04.397Z"
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "Create `/blog` listing page",
+      "session_id": "ses_26af20c5effeD1IIHiyTniYPcc",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-16T06:53:06.398Z"
+    }
+  }
+}
