@@ -24,6 +24,11 @@ export const UseCases: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'excerpt',
+      type: 'textarea',
+      label: 'Excerpt (shown on homepage preview cards)',
+    },
+    {
       name: 'challenge',
       type: 'richText',
     },

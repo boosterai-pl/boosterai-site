@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 import './styles.css'
 
 export const metadata = {
-  title: 'Booster AI — AI & Automation Agency',
+  title: 'Booster — AI & Automation Agency',
   description: 'Wdrażamy Automatyzację i AI w procesach sprzedaży.',
 }
 
@@ -15,7 +15,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
     <html lang="pl">
       <body className="antialiased">
         <Header />
-        <main id="main-content" className="pt-16 md:pt-20">
+        <main id="main-content" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
           {children}
         </main>
         <Footer />

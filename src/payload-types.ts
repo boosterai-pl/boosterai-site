@@ -263,6 +263,7 @@ export interface UseCase {
   title: string;
   slug: string;
   client?: string | null;
+  excerpt?: string | null;
   challenge?: {
     root: {
       type: string;
@@ -696,6 +697,7 @@ export interface UseCasesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   client?: T;
+  excerpt?: T;
   challenge?: T;
   solution?: T;
   results?: T;
@@ -990,12 +992,13 @@ export interface Homepage {
         }[]
       | null;
   };
-  collaborationBanner: {
-    title: string;
+  collaborationBanner?: {
+    title?: string | null;
     ctaLabel?: string | null;
     ctaUrl?: string | null;
   };
   useCasesSection: {
+    eyebrowText?: string | null;
     sectionTitle: string;
     featuredCases?: (number | UseCase)[] | null;
   };
@@ -1075,6 +1078,7 @@ export interface HomepageSelect<T extends boolean = true> {
   useCasesSection?:
     | T
     | {
+        eyebrowText?: T;
         sectionTitle?: T;
         featuredCases?: T;
       };

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="u2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8B9CC8"></stop>
+      <stop offset="1" stop-color="#A7B5D6"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#u2)"></rect>
+  
+  <g>
+    <circle cx="90" cy="110" r="36" fill="#6B84B8"></circle>
+    <path d="M40 240 Q40 160 90 160 Q140 160 140 240 Z" fill="#4A638E"></path>
+    <rect x="70" y="140" width="40" height="10" rx="3" fill="#2B4BF2"></rect>
+
+    <circle cx="200" cy="95" r="40" fill="#F4C8A8"></circle>
+    <path d="M140 240 Q140 150 200 150 Q260 150 260 240 Z" fill="#3C5BDE"></path>
+    <rect x="185" y="135" width="30" height="6" rx="2" fill="#fff"></rect>
+
+    <circle cx="310" cy="110" r="36" fill="#E8B898"></circle>
+    <path d="M260 240 Q260 160 310 160 Q360 160 360 240 Z" fill="#8B9CC8"></path>
+  </g>
+  
+  <rect x="170" y="200" width="90" height="10" rx="2" fill="#0B1530"></rect>
+  <rect x="180" y="180" width="70" height="24" rx="2" fill="#E2E8F0"></rect>
+</svg>

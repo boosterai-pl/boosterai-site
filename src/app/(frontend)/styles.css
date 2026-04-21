@@ -1,6 +1,24 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
-* {
+:root {
+  --primary: #2b4bf2;
+  --primary-deep: #1e35c8;
+  --accent: #f26e56;
+  --navy: #0f1a3d;
+  --navy-soft: #1b2a5b;
+  --muted: #6b7391;
+  --bg-0: #f4f6fb;
+  --bg-1: #e8eef8;
+  --card-hi: #d9e2f3;
+  --card-lo: #eef2fa;
+  --border: rgba(43, 75, 242, 0.12);
+  --shadow: 0 20px 60px -30px rgba(15, 26, 61, 0.25);
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -11,7 +29,26 @@ body {
 }
 
 body {
-  background: #ffffff;
-  color: #111827;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--navy);
+  background:
+    radial-gradient(1200px 800px at 80% -200px, #e8eef8 0%, transparent 60%),
+    radial-gradient(900px 700px at -10% 400px, #edf1fa 0%, transparent 60%),
+    linear-gradient(180deg, #f7f8fb 0%, #eef2fa 100%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Sora', sans-serif;
+  color: var(--navy);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
 }

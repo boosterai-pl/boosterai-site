@@ -6,6 +6,15 @@ interface UseCasesPreviewProps {
   data: Homepage['useCasesSection']
 }
 
+const SparkleIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 32 32" aria-hidden="true">
+    <path
+      d="M16 3 C17 11 21 15 29 16 C21 17 17 21 16 29 C15 21 11 17 3 16 C11 15 15 11 16 3 Z"
+      fill="#2B4BF2"
+    />
+  </svg>
+)
+
 const isUseCase = (value: unknown): value is UseCase => {
   if (!value || typeof value !== 'object') return false
   const candidate = value as Partial<UseCase>
@@ -17,78 +26,204 @@ export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
   const cases = data.featuredCases.filter(isUseCase)
   if (cases.length === 0) return null
 
-  return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        {data.sectionTitle && (
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            {data.sectionTitle}
-          </h2>
-        )}
+  const eyebrow = data.eyebrowText || 'Poznaj nasze wdrożenia'
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {cases.map((useCase) => {
-            return (
-              <Link
-                key={useCase.id}
-                href={`/use-cases/${useCase.slug}`}
-                className="group block bg-gray-50 rounded-xl overflow-hidden border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all"
+  return (
+    <section
+      style={{
+        margin: '60px 0',
+        padding: '60px 48px',
+        borderRadius: '28px',
+        background: 'linear-gradient(170deg,#DDE5F4 0%, #C9D5EE 100%)',
+        border: '1px solid rgba(43,75,242,0.12)',
+      }}
+    >
+      {/* Eyebrow */}
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          justifyContent: 'center',
+          color: 'var(--primary)',
+          fontWeight: 600,
+          fontSize: '14px',
+        }}
+      >
+        <SparkleIcon />
+        {eyebrow}
+        <SparkleIcon />
+      </div>
+
+      {/* Title */}
+      {data.sectionTitle && (
+        <h2
+          style={{
+            fontFamily: "'Sora', sans-serif",
+            textAlign: 'center',
+            fontSize: '54px',
+            lineHeight: 1.08,
+            fontWeight: 700,
+            marginTop: '14px',
+            color: 'var(--navy)',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          {data.sectionTitle}
+        </h2>
+      )}
+
+      {/* Cards grid — 3 cols, max 2 real cards + empty slot */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '24px',
+          marginTop: '44px',
+          maxWidth: '960px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+      >
+        {cases.map((useCase) => {
+          const coverImage =
+            useCase.coverImage &&
+            typeof useCase.coverImage === 'object' &&
+            'url' in useCase.coverImage
+              ? useCase.coverImage
+              : null
+
+          const categoryName =
+            useCase.category && typeof useCase.category === 'object'
+              ? useCase.category.name
+              : null
+
+          const formattedDate = useCase.publishedDate
+            ? new Intl.DateTimeFormat('pl-PL', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              }).format(new Date(useCase.publishedDate))
+            : null
+
+          // excerpt comes from CMS if available, otherwise fall back to client field
+          const excerptText =
+            (useCase as UseCase & { excerpt?: string }).excerpt || useCase.client || ''
+
+          return (
+            <Link
+              key={useCase.id}
+              href={`/use-cases/${useCase.slug}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <article
+                style={{
+                  background: '#fff',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px -24px rgba(15,26,61,0.18)',
+                  cursor: 'pointer',
+                  transition: 'transform .2s ease, box-shadow .2s ease',
+                }}
               >
-                {useCase.coverImage &&
-                  typeof useCase.coverImage === 'object' &&
-                  useCase.coverImage.url && (
-                    <div className="relative aspect-video bg-gray-200">
-                      <Image
-                        src={useCase.coverImage.url}
-                        alt={useCase.coverImage.alt || useCase.title || ''}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
+                {/* Thumb */}
+                <div
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '16/10',
+                    overflow: 'hidden',
+                    background: '#E4E9F2',
+                  }}
+                >
+                  {coverImage?.url ? (
+                    <Image
+                      src={coverImage.url}
+                      alt={coverImage.alt || useCase.title || ''}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <Image
+                      src="/usecase-1.svg"
+                      alt=""
+                      fill
+                      unoptimized
+                      aria-hidden="true"
+                      style={{ objectFit: 'cover' }}
+                    />
                   )}
 
-                <div className="p-6">
-                  {useCase.category && typeof useCase.category === 'object' && (
-                    <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-100 rounded-full mb-3">
-                      {useCase.category.name}
+                  {/* Badge */}
+                  {categoryName && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '14px',
+                        left: '14px',
+                        background: 'var(--primary)',
+                        color: '#fff',
+                        fontWeight: 600,
+                        fontSize: '12px',
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                      }}
+                    >
+                      {categoryName}
                     </span>
                   )}
-
-                  {useCase.title && (
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      {useCase.title}
-                    </h3>
-                  )}
-
-                  {useCase.client && (
-                    <p className="text-gray-600 leading-relaxed mb-4">Klient: {useCase.client}</p>
-                  )}
-
-                  <div className="flex items-center gap-2 text-blue-600 font-medium">
-                    <span>Dowiedz się więcej</span>
-                    <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </div>
                 </div>
-              </Link>
-            )
-          })}
-        </div>
+
+                {/* Body */}
+                <div style={{ padding: '22px 22px 26px' }}>
+                  <h4
+                    style={{
+                      fontFamily: "'Sora', sans-serif",
+                      fontSize: '18px',
+                      fontWeight: 700,
+                      marginBottom: '8px',
+                      lineHeight: 1.25,
+                      color: 'var(--navy)',
+                    }}
+                  >
+                    {useCase.title}
+                  </h4>
+                  {formattedDate && (
+                    <div
+                      style={{
+                        color: 'var(--muted)',
+                        fontSize: '12px',
+                        marginBottom: '12px',
+                      }}
+                    >
+                      {formattedDate}
+                    </div>
+                  )}
+                  {excerptText && (
+                    <p style={{ color: 'var(--muted)', fontSize: '13.5px', lineHeight: 1.55 }}>
+                      {excerptText}
+                    </p>
+                  )}
+                </div>
+              </article>
+            </Link>
+          )
+        })}
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          section[data-usecases] > div:last-child {
+            grid-template-columns: 1fr !important;
+          }
+          section[data-usecases] h2 {
+            font-size: 38px !important;
+          }
+          section[data-usecases] {
+            padding: 40px 24px !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

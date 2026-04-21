@@ -2,126 +2,223 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {/* Usługi Column */}
-          <nav aria-label="Services">
-            <h3 className="font-bold text-gray-900 mb-4">Usługi</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/uslugi/sales-booster"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Sales Booster
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/uslugi/ai-booster"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  AI Booster
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/uslugi/konsultacje"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Konsultacje
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/uslugi/wdrozenia"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Wdrożenia
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Materiały Column */}
-          <nav aria-label="Resources">
-            <h3 className="font-bold text-gray-900 mb-4">Materiały</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/use-cases"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Use Cases
-                </Link>
-              </li>
-              <li>
-                <Link href="/o-nas" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  O nas
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Kontakt Column */}
-          <nav aria-label="Contact">
-            <h3 className="font-bold text-gray-900 mb-4">Kontakt</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="mailto:kontakt@boosterai.pl"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  kontakt@boosterai.pl
-                </a>
-              </li>
-              <li>
-                <Link
-                  href="/kontakt"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Formularz kontaktowy
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Social/About Column */}
-          <div>
-            <h3 className="font-bold text-gray-900 mb-4">Booster AI</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Automatyzacja i AI w procesach sprzedaży. Pomagamy firmom B2B osiągać lepsze wyniki.
-            </p>
-          </div>
+    <footer
+      style={{
+        maxWidth: '1200px',
+        margin: '60px auto 40px',
+        padding: '44px 48px 32px',
+        borderRadius: '28px',
+        background: 'linear-gradient(180deg,#DFE6F3 0%, #CFDAEE 100%)',
+        border: '1px solid rgba(43,75,242,0.12)',
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1.4fr 1fr 1fr 1.3fr',
+          gap: '40px',
+        }}
+      >
+        {/* Brand column */}
+        <div>
+          <Link
+            href="/"
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 800,
+              color: 'var(--primary)',
+              fontSize: '24px',
+              letterSpacing: '0.02em',
+              textDecoration: 'none',
+            }}
+          >
+            BOOSTER
+          </Link>
+          <p
+            style={{
+              color: 'var(--muted)',
+              fontSize: '14px',
+              margin: '14px 0 20px',
+              lineHeight: 1.5,
+              maxWidth: '240px',
+            }}
+          >
+            Automatyzuj procesy i zwiększaj sprzedaż razem z nami!
+          </p>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            style={{
+              display: 'inline-grid',
+              placeItems: 'center',
+              width: '34px',
+              height: '34px',
+              background: 'var(--primary)',
+              color: '#fff',
+              borderRadius: '8px',
+              fontWeight: 700,
+              fontSize: '13px',
+              textDecoration: 'none',
+            }}
+          >
+            in
+          </a>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Booster AI. Wszelkie prawa zastrzeżone.
+        {/* Usługi */}
+        <nav aria-label="Usługi">
+          <h5
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 700,
+              fontSize: '15px',
+              margin: '6px 0 18px',
+              color: 'var(--navy)',
+            }}
+          >
+            Usługi
+          </h5>
+          {[
+            { href: '/uslugi', label: 'B2B Lead Generation' },
+            { href: '/uslugi', label: 'Konsultacje' },
+            { href: '/uslugi', label: 'Wdrożenia AI' },
+            { href: '/uslugi', label: 'Oferty pracy' },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              style={{
+                display: 'block',
+                color: 'var(--muted)',
+                fontSize: '14px',
+                textDecoration: 'none',
+                marginBottom: '10px',
+                lineHeight: 1.5,
+                transition: 'color .15s',
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Materiały */}
+        <nav aria-label="Materiały">
+          <h5
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 700,
+              fontSize: '15px',
+              margin: '6px 0 18px',
+              color: 'var(--navy)',
+            }}
+          >
+            Materiały
+          </h5>
+          {[
+            { href: '/kontakt', label: 'Umów spotkanie' },
+            { href: '/use-cases', label: 'Referencje' },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              style={{
+                display: 'block',
+                color: 'var(--muted)',
+                fontSize: '14px',
+                textDecoration: 'none',
+                marginBottom: '10px',
+                lineHeight: 1.5,
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Kontakt */}
+        <div>
+          <h5
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 700,
+              fontSize: '15px',
+              margin: '6px 0 18px',
+              color: 'var(--navy)',
+            }}
+          >
+            Kontakt
+          </h5>
+          <a
+            href="mailto:kontakt@boosterai.pl"
+            style={{
+              display: 'block',
+              color: 'var(--muted)',
+              fontSize: '14px',
+              textDecoration: 'none',
+              marginBottom: '10px',
+              lineHeight: 1.5,
+            }}
+          >
+            kontakt@boosterai.pl
+          </a>
+          <p
+            style={{
+              color: 'var(--muted)',
+              fontSize: '14px',
+              marginBottom: '10px',
+              lineHeight: 1.5,
+            }}
+          >
+            Sales Booster sp. z o.o.
+            <br />
+            Wrocław
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="/polityka-prywatnosci"
-              className="text-gray-500 hover:text-blue-600 text-sm transition-colors"
-            >
-              Polityka prywatności
-            </Link>
-            <Link
-              href="/regulamin"
-              className="text-gray-500 hover:text-blue-600 text-sm transition-colors"
-            >
-              Regulamin
-            </Link>
-          </div>
+          <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.5 }}>
+            NIP: PL8992976718
+          </p>
         </div>
       </div>
+
+      {/* Bottom bar */}
+      <div
+        style={{
+          marginTop: '36px',
+          paddingTop: '20px',
+          borderTop: '1px solid rgba(15,26,61,0.08)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '13px',
+          color: 'var(--muted)',
+          flexWrap: 'wrap',
+          gap: '8px',
+        }}
+      >
+        <div>
+          Copyright © {new Date().getFullYear()}&nbsp;
+          <strong style={{ color: 'var(--navy)', fontWeight: 600 }}>
+            Sales Booster sp. z o.o.
+          </strong>
+          &nbsp; All rights reserved.
+        </div>
+        <Link
+          href="/polityka-prywatnosci"
+          style={{ color: 'var(--muted)', textDecoration: 'underline' }}
+        >
+          Ciasteczka i Polityka prywatności
+        </Link>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          footer > div:first-child {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   )
 }

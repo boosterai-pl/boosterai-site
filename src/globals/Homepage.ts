@@ -10,18 +10,22 @@ export const Homepage: GlobalConfig = {
         {
           name: 'headline',
           type: 'text',
+          defaultValue: 'AI & Automation Agency',
         },
         {
           name: 'subheadline',
           type: 'text',
+          defaultValue: 'Wdrażamy Automatyzację i AI w procesach sprzedaży.',
         },
         {
           name: 'ctaLabel',
           type: 'text',
+          defaultValue: 'Kontakt',
         },
         {
           name: 'ctaUrl',
           type: 'text',
+          defaultValue: '/kontakt',
         },
         {
           name: 'backgroundImage',
@@ -31,12 +35,14 @@ export const Homepage: GlobalConfig = {
         {
           name: 'badgeText',
           type: 'text',
-          label: 'Badge Text',
+          label: 'LLM Badge Text',
+          defaultValue: 'Najpopularniejsze LLMy dla Twojej firmy',
         },
         {
           name: 'badgeSubtext',
           type: 'text',
-          label: 'Badge Subtext',
+          label: 'LLM Badge Subtext',
+          defaultValue: 'Ponad 300 gotowych automatyzacji',
         },
         {
           name: 'illustration',
@@ -49,10 +55,12 @@ export const Homepage: GlobalConfig = {
     {
       name: 'salesBooster',
       type: 'group',
+      label: 'Sales Booster Section',
       fields: [
         {
           name: 'sectionTitle',
           type: 'text',
+          defaultValue: 'Sales Booster',
         },
         {
           name: 'sectionSubtitle',
@@ -82,10 +90,12 @@ export const Homepage: GlobalConfig = {
     {
       name: 'aiBooster',
       type: 'group',
+      label: 'AI Booster Section',
       fields: [
         {
           name: 'sectionTitle',
           type: 'text',
+          defaultValue: 'AI Booster',
         },
         {
           name: 'sectionSubtitle',
@@ -115,10 +125,12 @@ export const Homepage: GlobalConfig = {
     {
       name: 'processSteps',
       type: 'group',
+      label: 'Process Steps (Współpraca)',
       fields: [
         {
           name: 'sectionTitle',
           type: 'text',
+          defaultValue: 'Trzy kroki\ndo udanej współpracy',
         },
         {
           name: 'steps',
@@ -143,12 +155,11 @@ export const Homepage: GlobalConfig = {
     {
       name: 'collaborationBanner',
       type: 'group',
-      label: 'Collaboration Banner',
+      label: 'Collaboration Banner (legacy — not shown in current design)',
       fields: [
         {
           name: 'title',
           type: 'text',
-          required: true,
         },
         {
           name: 'ctaLabel',
@@ -166,10 +177,16 @@ export const Homepage: GlobalConfig = {
       label: 'Use Cases Preview',
       fields: [
         {
+          name: 'eyebrowText',
+          type: 'text',
+          label: 'Eyebrow Label',
+          defaultValue: 'Poznaj nasze wdrożenia',
+        },
+        {
           name: 'sectionTitle',
           type: 'text',
           required: true,
-          defaultValue: 'Poznaj nasze wdrożenia',
+          defaultValue: 'Booster Use Cases',
         },
         {
           name: 'featuredCases',
@@ -184,6 +201,7 @@ export const Homepage: GlobalConfig = {
     {
       name: 'cta',
       type: 'group',
+      label: 'CTA Section (legacy — not shown in current design)',
       fields: [
         {
           name: 'headline',
