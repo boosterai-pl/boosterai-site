@@ -182,6 +182,11 @@ export const Homepage: GlobalConfig = {
       label: 'Process Steps (Współpraca)',
       fields: [
         {
+          name: 'eyebrowText',
+          type: 'text',
+          defaultValue: 'Współpraca',
+        },
+        {
           name: 'sectionTitle',
           type: 'text',
           defaultValue: 'Trzy kroki\ndo udanej współpracy',

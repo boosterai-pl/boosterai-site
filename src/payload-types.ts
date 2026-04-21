@@ -982,6 +982,7 @@ export interface Homepage {
       | null;
   };
   processSteps?: {
+    eyebrowText?: string | null;
     sectionTitle?: string | null;
     steps?:
       | {
@@ -1068,6 +1069,7 @@ export interface HomepageSelect<T extends boolean = true> {
   processSteps?:
     | T
     | {
+        eyebrowText?: T;
         sectionTitle?: T;
         steps?:
           | T
