@@ -20,17 +20,23 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* id="home" lives inside HeroSection */}
       <HeroSection data={homepage.hero} />
 
-      <ServicesSection data={homepage.salesBooster} sectionId="sales-booster" />
-
-      <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
+      {/* id="uslugi" — both service sections share this anchor */}
+      <div id="uslugi">
+        <ServicesSection data={homepage.salesBooster} sectionId="sales-booster" />
+        <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
+      </div>
 
       <CollaborationBanner data={homepage.collaborationBanner} />
 
       <ProcessSection data={homepage.processSteps} />
 
-      <UseCasesPreview data={homepage.useCasesSection} />
+      {/* id="use-cases" */}
+      <div id="use-cases">
+        <UseCasesPreview data={homepage.useCasesSection} />
+      </div>
 
       <CTASection data={homepage.cta} />
     </>

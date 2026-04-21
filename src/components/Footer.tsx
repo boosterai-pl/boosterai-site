@@ -3,6 +3,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer
+      id="kontakt"
       style={{
         maxWidth: '1200px',
         margin: '60px auto 40px',
