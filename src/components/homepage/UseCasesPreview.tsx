@@ -22,9 +22,10 @@ const isUseCase = (value: unknown): value is UseCase => {
 }
 
 export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
-  if (!data || !data.featuredCases || data.featuredCases.length === 0) return null
-  const cases = data.featuredCases.filter(isUseCase)
-  if (cases.length === 0) return null
+  if (!data) return null
+  const cases = (data.featuredCases ?? []).filter(isUseCase)
+  const manualCards = data.manualCards ?? []
+  const showManual = cases.length === 0
 
   const eyebrow = data.eyebrowText || 'Poznaj nasze wdrożenia'
 
@@ -85,7 +86,99 @@ export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
           marginRight: 'auto',
         }}
       >
-        {cases.map((useCase) => {
+        {(showManual ? manualCards : cases).map((item, index) => {
+          if (showManual) {
+            const card = item as Homepage['useCasesSection']['manualCards'][number]
+            const imageUrl =
+              card.image && typeof card.image === 'object' && card.image.url
+                ? card.image.url
+                : index % 2 === 0
+                  ? '/usecase-1.svg'
+                  : '/usecase-2.svg'
+
+            return (
+              <article
+                key={`manual-${index}`}
+                style={{
+                  background: '#fff',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px -24px rgba(15,26,61,0.18)',
+                  cursor: 'pointer',
+                  transition: 'transform .2s ease, box-shadow .2s ease',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '16/10',
+                    overflow: 'hidden',
+                    background: '#E4E9F2',
+                  }}
+                >
+                  <Image
+                    src={imageUrl}
+                    alt=""
+                    fill
+                    unoptimized
+                    aria-hidden="true"
+                    style={{ objectFit: 'cover' }}
+                  />
+                  {card.badge && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '14px',
+                        left: '14px',
+                        background: 'var(--primary)',
+                        color: '#fff',
+                        fontWeight: 600,
+                        fontSize: '12px',
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                      }}
+                    >
+                      {card.badge}
+                    </span>
+                  )}
+                </div>
+                <div style={{ padding: '22px 22px 26px' }}>
+                  {card.title && (
+                    <h4
+                      style={{
+                        fontFamily: "'Sora', sans-serif",
+                        fontSize: '18px',
+                        fontWeight: 700,
+                        marginBottom: '8px',
+                        lineHeight: 1.25,
+                        color: 'var(--navy)',
+                      }}
+                    >
+                      {card.title}
+                    </h4>
+                  )}
+                  {card.date && (
+                    <div
+                      style={{
+                        color: 'var(--muted)',
+                        fontSize: '12px',
+                        marginBottom: '12px',
+                      }}
+                    >
+                      {card.date}
+                    </div>
+                  )}
+                  {card.excerpt && (
+                    <p style={{ color: 'var(--muted)', fontSize: '13.5px', lineHeight: 1.55 }}>
+                      {card.excerpt}
+                    </p>
+                  )}
+                </div>
+              </article>
+            )
+          }
+
+          const useCase = item as UseCase
           const coverImage =
             useCase.coverImage &&
             typeof useCase.coverImage === 'object' &&
@@ -209,6 +302,8 @@ export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
             </Link>
           )
         })}
+        {/* third empty slot, to match design layout */}
+        <div aria-hidden="true" />
       </div>
 
       <style>{`

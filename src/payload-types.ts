@@ -1000,6 +1000,16 @@ export interface Homepage {
   useCasesSection: {
     eyebrowText?: string | null;
     sectionTitle: string;
+    manualCards?:
+      | {
+          badge?: string | null;
+          title?: string | null;
+          date?: string | null;
+          excerpt?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
     featuredCases?: (number | UseCase)[] | null;
   };
   cta?: {
@@ -1080,6 +1090,16 @@ export interface HomepageSelect<T extends boolean = true> {
     | {
         eyebrowText?: T;
         sectionTitle?: T;
+        manualCards?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              date?: T;
+              excerpt?: T;
+              image?: T;
+              id?: T;
+            };
         featuredCases?: T;
       };
   cta?:

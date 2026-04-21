@@ -69,6 +69,33 @@ export const Homepage: GlobalConfig = {
         {
           name: 'services',
           type: 'array',
+          defaultValue: [
+            {
+              title: 'Wsparcie sprzedaży B2B',
+              description:
+                'Wspieramy firmy, które chcą pozyskiwać więcej klientów B2B i zwiększać wyniki sprzedaży. Pomagamy optymalizować procesy, prowadzimy spersonalizowane kampanie i dopasowujemy strategie do rynku i sytuacji przedsiębiorstwa.',
+            },
+            {
+              title: 'Generowanie leadów B2B',
+              description:
+                'Pozyskujemy wartościowe kontakty biznesowe, które zamieniamy w Twoich potencjalnych klientów.',
+            },
+            {
+              title: 'Strategie sprzedaży B2B',
+              description:
+                'Tworzymy skuteczne strategie sprzedaży B2B, które pomagają osiągać lepsze wyniki i zdobywać przewagę na rynku.',
+            },
+            {
+              title: "Wdrożenia CRM'ów",
+              description:
+                'Wdrażamy systemy CRM, które usprawniają zarządzanie sprzedażą i poprawiają efektywność zespołów handlowych.',
+            },
+            {
+              title: 'Konsultacje',
+              description:
+                'Prowadzimy konsultacje, które pomagają usprawnić procesy sprzedażowe i osiągać lepsze wyniki biznesowe.',
+            },
+          ],
           fields: [
             {
               name: 'icon',
@@ -104,6 +131,33 @@ export const Homepage: GlobalConfig = {
         {
           name: 'services',
           type: 'array',
+          defaultValue: [
+            {
+              title: 'AI w optymalizacji procesów',
+              description:
+                'Wykorzystujemy AI do optymalizacji procesów, zwiększając efektywność zespołów i automatyzując kluczowe obszary w przedsiębiorstwie.',
+            },
+            {
+              title: 'AI Voice Boty',
+              description:
+                'Wdrażamy AI voice boty, które automatyzują obsługę klienta i wspierają procesy sprzedażowe.',
+            },
+            {
+              title: 'AI Chat Boty',
+              description:
+                'Tworzymy AI chat boty, które usprawniają komunikację z klientami i wspierają działania sprzedażowe.',
+            },
+            {
+              title: 'AI Document Processing',
+              description:
+                'Automatyzujemy przetwarzanie dokumentów, usprawniając zarządzanie danymi i oszczędzając czas.',
+            },
+            {
+              title: 'Wdrożenia indywidualne',
+              description:
+                'Realizujemy indywidualne wdrożenia, dopasowane do specyfiki i potrzeb Twojego biznesu.',
+            },
+          ],
           fields: [
             {
               name: 'icon',
@@ -187,6 +241,50 @@ export const Homepage: GlobalConfig = {
           type: 'text',
           required: true,
           defaultValue: 'Booster Use Cases',
+        },
+        {
+          name: 'manualCards',
+          type: 'array',
+          label: 'Manual Cards (shown when no Use Cases selected)',
+          defaultValue: [
+            {
+              badge: 'Lead generation',
+              title: 'Lead generation w startupie',
+              date: '16 stycznia, 2025',
+              excerpt:
+                'Wyzwanie: Zbudowanie powtarzalnego procesu generowania leadów za pomocą kampanii outreachowych w…',
+            },
+            {
+              badge: 'AI Voicebot',
+              title: 'Inteligentny Voice-Bot w firmie usługowej',
+              date: '8 stycznia, 2025',
+              excerpt:
+                'Wyzwanie: Klient stanął przed koniecznością zautomatyzowania procesu wstępnej kwalifikacji leadów pozyskiwanych…',
+            },
+          ],
+          fields: [
+            {
+              name: 'badge',
+              type: 'text',
+            },
+            {
+              name: 'title',
+              type: 'text',
+            },
+            {
+              name: 'date',
+              type: 'text',
+            },
+            {
+              name: 'excerpt',
+              type: 'textarea',
+            },
+            {
+              name: 'image',
+              type: 'upload',
+              relationTo: 'media',
+            },
+          ],
         },
         {
           name: 'featuredCases',

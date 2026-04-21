@@ -83,6 +83,62 @@ const SparkleIcon = () => (
   </svg>
 )
 
+const FALLBACK_SALES = [
+  {
+    title: 'Wsparcie sprzedaży B2B',
+    description:
+      'Wspieramy firmy, które chcą pozyskiwać więcej klientów B2B i zwiększać wyniki sprzedaży. Pomagamy optymalizować procesy, prowadzimy spersonalizowane kampanie i dopasowujemy strategie do rynku i sytuacji przedsiębiorstwa.',
+  },
+  {
+    title: 'Generowanie leadów B2B',
+    description:
+      'Pozyskujemy wartościowe kontakty biznesowe, które zamieniamy w Twoich potencjalnych klientów.',
+  },
+  {
+    title: 'Strategie sprzedaży B2B',
+    description:
+      'Tworzymy skuteczne strategie sprzedaży B2B, które pomagają osiągać lepsze wyniki i zdobywać przewagę na rynku.',
+  },
+  {
+    title: "Wdrożenia CRM'ów",
+    description:
+      'Wdrażamy systemy CRM, które usprawniają zarządzanie sprzedażą i poprawiają efektywność zespołów handlowych.',
+  },
+  {
+    title: 'Konsultacje',
+    description:
+      'Prowadzimy konsultacje, które pomagają usprawnić procesy sprzedażowe i osiągać lepsze wyniki biznesowe.',
+  },
+]
+
+const FALLBACK_AI = [
+  {
+    title: 'AI w optymalizacji procesów',
+    description:
+      'Wykorzystujemy AI do optymalizacji procesów, zwiększając efektywność zespołów i automatyzując kluczowe obszary w przedsiębiorstwie.',
+  },
+  {
+    title: 'AI Voice Boty',
+    description:
+      'Wdrażamy AI voice boty, które automatyzują obsługę klienta i wspierają procesy sprzedażowe.',
+  },
+  {
+    title: 'AI Chat Boty',
+    description:
+      'Tworzymy AI chat boty, które usprawniają komunikację z klientami i wspierają działania sprzedażowe.',
+  },
+  {
+    title: 'AI Document Processing',
+    description:
+      'Automatyzujemy przetwarzanie dokumentów, usprawniając zarządzanie danymi i oszczędzając czas.',
+  },
+  {
+    title: 'Wdrożenia indywidualne',
+    description:
+      'Realizujemy indywidualne wdrożenia, dopasowane do specyfiki i potrzeb Twojego biznesu.',
+  },
+]
+
 interface ServicesSectionProps {
   data: Homepage['salesBooster'] | Homepage['aiBooster']
   sectionId?: string
@@ -92,7 +148,11 @@ export default function ServicesSection({ data, sectionId }: ServicesSectionProp
   if (!data) return null
 
   const subtitle = extractLexicalText(data.sectionSubtitle)
-  const services = data.services ?? []
+  const services = data.services && data.services.length > 0
+    ? data.services
+    : sectionId === 'sales-booster'
+      ? FALLBACK_SALES
+      : FALLBACK_AI
 
   const [highlightService, ...smallServices] = services
 
@@ -169,7 +229,7 @@ export default function ServicesSection({ data, sectionId }: ServicesSectionProp
                 letterSpacing: '-0.02em',
               }}
             >
-              {highlightService.title}
+              {highlightService.title ?? ''}
             </h3>
             {highlightService.description && (
               <p style={{ color: '#4B5778', fontSize: '15.5px', lineHeight: 1.6, maxWidth: '420px' }}>
