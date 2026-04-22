@@ -43,6 +43,12 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      // Neon (and most hosted Postgres) require SSL. Local Docker does not and
+      // uses a non-hosted hostname, so only opt into SSL for remote databases.
+      ssl:
+        process.env.DATABASE_URI && !/localhost|127\.0\.0\.1/.test(process.env.DATABASE_URI)
+          ? { rejectUnauthorized: false }
+          : false,
     },
   }),
   plugins: [
