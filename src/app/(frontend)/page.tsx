@@ -1,5 +1,3 @@
-import CollaborationBanner from '@/components/homepage/CollaborationBanner'
-import CTASection from '@/components/homepage/CTASection'
 import HeroSection from '@/components/homepage/HeroSection'
 import ProcessSection from '@/components/homepage/ProcessSection'
 import ServicesSection from '@/components/homepage/ServicesSection'
@@ -29,16 +27,12 @@ export default async function HomePage() {
         <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
       </div>
 
-      <CollaborationBanner data={homepage.collaborationBanner} />
-
       <ProcessSection data={homepage.processSteps} />
 
       {/* id="use-cases" */}
       <div id="use-cases">
         <UseCasesPreview data={homepage.useCasesSection} />
       </div>
-
-      <CTASection data={homepage.cta} />
     </>
   )
 }
