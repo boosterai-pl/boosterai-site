@@ -14,8 +14,9 @@ export default function HeroSection({ data }: HeroSectionProps) {
   const badgeText = data?.badgeText || 'Najpopularniejsze LLMy dla Twojej firmy'
   const badgeSubtext = data?.badgeSubtext || 'Ponad 300 gotowych automatyzacji'
 
-  const hasIllustration =
-    data?.illustration && typeof data.illustration === 'object' && data.illustration.url
+  const illustration =
+    data?.illustration && typeof data.illustration === 'object' ? data.illustration : null
+  const illustrationUrl = illustration?.url ?? null
 
   return (
     <section
@@ -126,9 +127,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {/* Claude-ish sunburst */}
-              <div
-                style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}
-              >
+              <div style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}>
                 <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
                   <g fill="#D97757">
                     <rect x="15" y="2" width="2" height="8" rx="1" />
@@ -138,21 +137,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
                     <rect x="15" y="2" width="2" height="8" rx="1" transform="rotate(45 16 16)" />
                     <rect x="15" y="2" width="2" height="8" rx="1" transform="rotate(-45 16 16)" />
                     <rect x="15" y="22" width="2" height="8" rx="1" transform="rotate(45 16 16)" />
-                    <rect
-                      x="15"
-                      y="22"
-                      width="2"
-                      height="8"
-                      rx="1"
-                      transform="rotate(-45 16 16)"
-                    />
+                    <rect x="15" y="22" width="2" height="8" rx="1" transform="rotate(-45 16 16)" />
                   </g>
                 </svg>
               </div>
               {/* GPT-ish knot */}
-              <div
-                style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}
-              >
+              <div style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}>
                 <svg
                   width="26"
                   height="26"
@@ -167,9 +157,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 </svg>
               </div>
               {/* Gemini-ish sparkle */}
-              <div
-                style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}
-              >
+              <div style={{ width: '28px', height: '28px', display: 'grid', placeItems: 'center' }}>
                 <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
                   <path
                     d="M16 3 C17 11 21 15 29 16 C21 17 17 21 16 29 C15 21 11 17 3 16 C11 15 15 11 16 3 Z"
@@ -198,10 +186,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
       {/* Illustration */}
       <div>
-        {hasIllustration && typeof data!.illustration === 'object' && data!.illustration.url ? (
+        {illustrationUrl ? (
           <Image
-            src={data!.illustration.url}
-            alt={data!.illustration.alt || ''}
+            src={illustrationUrl}
+            alt={illustration?.alt || ''}
             width={520}
             height={460}
             priority
