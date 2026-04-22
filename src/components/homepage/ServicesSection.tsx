@@ -19,53 +19,133 @@ const extractLexicalText = (value: unknown): string => {
 /* Inline icon SVGs matching the design */
 const icons: Record<string, React.ReactNode> = {
   leads: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="8" cy="15" r="5" />
       <path d="M12 11 L20 3 M16 3h4v4" />
     </svg>
   ),
   strategy: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M4 6h12a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V6Z" />
       <path d="M4 6a3 3 0 0 1 3-3h12v14" />
     </svg>
   ),
   crm: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="11" cy="11" r="6" />
       <path d="M15.5 15.5 L20 20" />
       <path d="M9 11 h4" />
     </svg>
   ),
   consulting: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M4 5h7v15H6a2 2 0 0 1-2-2V5Z" />
       <path d="M20 5h-7v15h5a2 2 0 0 0 2-2V5Z" />
       <path d="M4 5 L2 5 M20 5 L22 5" />
     </svg>
   ),
   voice: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <rect x="9" y="3" width="6" height="13" rx="3" />
       <path d="M5 11 a7 7 0 0 0 14 0" />
       <path d="M12 18v3" />
     </svg>
   ),
   chat: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M4 6h12a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V6Z" />
       <path d="M4 6a3 3 0 0 1 3-3h12v14" />
     </svg>
   ),
   docs: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="11" cy="11" r="6" />
       <path d="M15.5 15.5 L20 20" />
       <path d="M8 11h6 M11 8v6" />
     </svg>
   ),
   custom: (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M4 20 V8 M9 20 V12 M14 20 V5 M19 20 V10" />
       <path d="M3 20 h18" />
     </svg>
@@ -148,11 +228,12 @@ export default function ServicesSection({ data, sectionId }: ServicesSectionProp
   if (!data) return null
 
   const subtitle = extractLexicalText(data.sectionSubtitle)
-  const services = data.services && data.services.length > 0
-    ? data.services
-    : sectionId === 'sales-booster'
-      ? FALLBACK_SALES
-      : FALLBACK_AI
+  const services =
+    data.services && data.services.length > 0
+      ? data.services
+      : sectionId === 'sales-booster'
+        ? FALLBACK_SALES
+        : FALLBACK_AI
 
   const [highlightService, ...smallServices] = services
 
@@ -232,7 +313,9 @@ export default function ServicesSection({ data, sectionId }: ServicesSectionProp
               {highlightService.title ?? ''}
             </h3>
             {highlightService.description && (
-              <p style={{ color: '#4B5778', fontSize: '15.5px', lineHeight: 1.6, maxWidth: '420px' }}>
+              <p
+                style={{ color: '#4B5778', fontSize: '15.5px', lineHeight: 1.6, maxWidth: '420px' }}
+              >
                 {highlightService.description}
               </p>
             )}
@@ -244,7 +327,7 @@ export default function ServicesSection({ data, sectionId }: ServicesSectionProp
           const iconKey = DEFAULT_ICONS[index + 1] ?? 'custom'
           return (
             <div
-              key={service.id || index}
+              key={('id' in service && service.id) || index}
               style={{
                 background: 'linear-gradient(180deg,#FDFDFF 0%, #F4F7FD 100%)',
                 border: '1px solid var(--border)',

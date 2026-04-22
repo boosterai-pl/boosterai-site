@@ -88,7 +88,9 @@ export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
       >
         {(showManual ? manualCards : cases).map((item, index) => {
           if (showManual) {
-            const card = item as Homepage['useCasesSection']['manualCards'][number]
+            const card = item as NonNullable<
+              NonNullable<Homepage['useCasesSection']>['manualCards']
+            >[number]
             const imageUrl =
               card.image && typeof card.image === 'object' && card.image.url
                 ? card.image.url
@@ -187,9 +189,7 @@ export default function UseCasesPreview({ data }: UseCasesPreviewProps) {
               : null
 
           const categoryName =
-            useCase.category && typeof useCase.category === 'object'
-              ? useCase.category.name
-              : null
+            useCase.category && typeof useCase.category === 'object' ? useCase.category.name : null
 
           const formattedDate = useCase.publishedDate
             ? new Intl.DateTimeFormat('pl-PL', {
