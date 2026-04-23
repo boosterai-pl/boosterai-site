@@ -70,11 +70,3 @@ Uses **Tailwind CSS v4** — config is CSS-based, not `tailwind.config.ts`:
 docker compose down -v && docker compose up -d
 pnpm payload migrate
 ```
-
-## Commits
-
-GPG signing is configured on this machine. In terminal sessions where pinentry fails, use:
-
-```bash
-git -c commit.gpgsign=false commit -m "..."
-```

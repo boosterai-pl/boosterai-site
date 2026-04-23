@@ -1,5 +1,3 @@
-import CollaborationBanner from '@/components/homepage/CollaborationBanner'
-import CTASection from '@/components/homepage/CTASection'
 import HeroSection from '@/components/homepage/HeroSection'
 import ProcessSection from '@/components/homepage/ProcessSection'
 import ServicesSection from '@/components/homepage/ServicesSection'
@@ -20,19 +18,21 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* id="home" lives inside HeroSection */}
       <HeroSection data={homepage.hero} />
 
-      <ServicesSection data={homepage.salesBooster} sectionId="sales-booster" />
-
-      <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
-
-      <CollaborationBanner data={homepage.collaborationBanner} />
+      {/* id="uslugi" — both service sections share this anchor */}
+      <div id="uslugi">
+        <ServicesSection data={homepage.salesBooster} sectionId="sales-booster" />
+        <ServicesSection data={homepage.aiBooster} sectionId="ai-booster" />
+      </div>
 
       <ProcessSection data={homepage.processSteps} />
 
-      <UseCasesPreview data={homepage.useCasesSection} />
-
-      <CTASection data={homepage.cta} />
+      {/* id="use-cases" */}
+      <div id="use-cases">
+        <UseCasesPreview data={homepage.useCasesSection} />
+      </div>
     </>
   )
 }

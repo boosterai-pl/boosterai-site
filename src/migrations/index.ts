@@ -1,6 +1,7 @@
 import * as migration_20260405_001637 from './20260405_001637';
 import * as migration_20260405_001820 from './20260405_001820';
 import * as migration_20260406_230210_homepage_updates from './20260406_230210_homepage_updates';
+import * as migration_20260422_112011_use_cases_manual_cards from './20260422_112011_use_cases_manual_cards';
 
 export const migrations = [
   {
@@ -16,6 +17,11 @@ export const migrations = [
   {
     up: migration_20260406_230210_homepage_updates.up,
     down: migration_20260406_230210_homepage_updates.down,
-    name: '20260406_230210_homepage_updates'
+    name: '20260406_230210_homepage_updates',
+  },
+  {
+    up: migration_20260422_112011_use_cases_manual_cards.up,
+    down: migration_20260422_112011_use_cases_manual_cards.down,
+    name: '20260422_112011_use_cases_manual_cards'
   },
 ];

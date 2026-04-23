@@ -92,6 +92,58 @@ docker compose down -v && docker compose up -d
 pnpm payload migrate
 ```
 
+## Deployment (Vercel + Neon)
+
+Produkcja używa **Neon Postgres** (serverless) zamiast lokalnego Dockera. Lokalny dev pozostaje na Dockerze.
+
+### Pierwsza konfiguracja
+
+1. Zaloguj się do [Neon Console](https://console.neon.tech/) i skopiuj **pooled** connection string z zakładki _Connection Details_ (endpoint z sufiksem `-pooler`, parametr `?sslmode=require`).
+
+2. Ustaw zmienne środowiskowe na Vercel (_Project → Settings → Environment Variables_) dla środowisk `Production` i `Preview`:
+
+   | Zmienna                  | Wartość                                                                     |
+   | ------------------------ | --------------------------------------------------------------------------- |
+   | `DATABASE_URI`           | Neon **pooled** URL (`...-pooler.REGION.aws.neon.tech/...?sslmode=require`) |
+   | `PAYLOAD_SECRET`         | `openssl rand -hex 32` (inny niż lokalnie)                                  |
+   | `NEXT_PUBLIC_SERVER_URL` | `https://twoja-domena.vercel.app`                                           |
+   | `BLOB_READ_WRITE_TOKEN`  | Token z Vercel Blob (_Storage → Blob_)                                      |
+
+   Payload używa zmiennej `DATABASE_URI` — **nie** `DATABASE_URL` z szablonów Vercel.
+
+3. Uruchom migracje Payload na bazie Neon (jednorazowo, z lokalnej maszyny):
+
+   ```bash
+   DATABASE_URI="<neon-pooled-url>" PAYLOAD_SECRET="<prod-secret>" pnpm payload migrate
+   ```
+
+4. Deploy:
+
+   ```bash
+   vercel --prod
+   ```
+
+### Po zmianie schematu kolekcji
+
+```bash
+# 1. Wygeneruj nową migrację lokalnie (na Docker DB)
+pnpm payload migrate:create
+
+# 2. Zastosuj lokalnie
+pnpm payload migrate
+
+# 3. Commit migracji (src/migrations/) i wypchnij
+
+# 4. Zastosuj na Neon przed deployem
+DATABASE_URI="<neon-pooled-url>" pnpm payload migrate
+```
+
+### Uwagi
+
+- **Pooled vs unpooled**: używamy poolera (pgbouncer) bo Next.js API routes i Payload na Vercel są serverless. Direct connection (`DATABASE_URL_UNPOOLED`) nie jest potrzebny.
+- **Zmienne PG\* / POSTGRES\***: ignorujemy je — Payload czyta tylko `DATABASE_URI`.
+- **Pierwsze połączenie** do Neon może mieć cold start ~1-2s (auto-suspend po 5 min bezczynności na darmowym planie).
+
 ## Struktura projektu
 
 ```
@@ -106,7 +158,6 @@ src/
 ├── migrations/         # migracje bazy danych
 └── payload.config.ts   # konfiguracja Payload CMS
 ```
-
 
 ## haslo do dev admin panel
 

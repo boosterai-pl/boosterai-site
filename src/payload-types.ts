@@ -263,6 +263,7 @@ export interface UseCase {
   title: string;
   slug: string;
   client?: string | null;
+  excerpt?: string | null;
   challenge?: {
     root: {
       type: string;
@@ -696,6 +697,7 @@ export interface UseCasesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   client?: T;
+  excerpt?: T;
   challenge?: T;
   solution?: T;
   results?: T;
@@ -980,6 +982,7 @@ export interface Homepage {
       | null;
   };
   processSteps?: {
+    eyebrowText?: string | null;
     sectionTitle?: string | null;
     steps?:
       | {
@@ -990,13 +993,24 @@ export interface Homepage {
         }[]
       | null;
   };
-  collaborationBanner: {
-    title: string;
+  collaborationBanner?: {
+    title?: string | null;
     ctaLabel?: string | null;
     ctaUrl?: string | null;
   };
   useCasesSection: {
+    eyebrowText?: string | null;
     sectionTitle: string;
+    manualCards?:
+      | {
+          badge?: string | null;
+          title?: string | null;
+          date?: string | null;
+          excerpt?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
     featuredCases?: (number | UseCase)[] | null;
   };
   cta?: {
@@ -1055,6 +1069,7 @@ export interface HomepageSelect<T extends boolean = true> {
   processSteps?:
     | T
     | {
+        eyebrowText?: T;
         sectionTitle?: T;
         steps?:
           | T
@@ -1075,7 +1090,18 @@ export interface HomepageSelect<T extends boolean = true> {
   useCasesSection?:
     | T
     | {
+        eyebrowText?: T;
         sectionTitle?: T;
+        manualCards?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              date?: T;
+              excerpt?: T;
+              image?: T;
+              id?: T;
+            };
         featuredCases?: T;
       };
   cta?:
